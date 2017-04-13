@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "start": "node ./bin/www",
-    "web:dev": "next",
-    "api:dev": "nodemon",
+    "start": "NODE_ENV=production node scripts/startServer",
+    "build": "next build",
+    "dev": "concurrently 'node scripts/startServer' 'npm run proxy-api'",
+    "proxy-api": "nodemon --watch api scripts/proxyApi.js",
     "pretest": "standard",
     "test": "jest",
-    "fix": "prettier-standard 'pages/index.js'"
+    "fix": "standard --fix"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,7 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
-    "fontfaceobserver": "^2.0.9",
+    "http-proxy": "^1.16.2",
     "morgan": "~1.8.1",
     "next": "^2.1.0",
     "octicons": "^5.0.1",
@@ -28,14 +29,13 @@
     "passport-github2": "^0.1.10",
     "react": "^15.5.3",
     "react-dom": "^15.5.3",
-    "serve-favicon": "~2.4.2",
-    "styled-components": "^1.4.4",
-    "webfontloader": "^1.6.27"
+    "styled-components": "^1.4.4"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.2",
     "babel-jest": "^19.0.0",
     "babel-preset-stage-0": "^6.24.1",
+    "concurrently": "^3.4.0",
     "jest": "^19.0.2",
     "prettier-standard": "^3.0.1",
     "standard": "^10.0.1"

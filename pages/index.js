@@ -3,7 +3,7 @@ import DefaultLayout from '../components/layouts/DefaultLayout'
 import styled from 'styled-components'
 
 class Index extends React.Component {
-  msg = 'yolo'
+  msg = 'yolo';
 
   onButtonClick () {
     console.log(this.msg)

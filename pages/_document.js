@@ -1,7 +1,4 @@
-import Document, {
-  Main,
-  NextScript
-} from 'next/document'
+import Document, {Head, Main, NextScript} from 'next/document'
 import styleSheet from 'styled-components/lib/models/StyleSheet'
 import '../lib/styles'
 
@@ -21,6 +18,7 @@ export default class MyDocument extends Document {
   render () {
     return (
       <html>
+        <Head />
         <Main />
         <NextScript />
       </html>
