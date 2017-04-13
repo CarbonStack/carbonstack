@@ -1,0 +1,46 @@
+{
+  "name": "carbonstack",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./bin/www",
+    "web:dev": "next",
+    "api:dev": "nodemon",
+    "pretest": "standard",
+    "test": "jest",
+    "fix": "prettier-standard 'pages/index.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carbonstack/carbonstack.git"
+  },
+  "author": "Junyoung Choi <fluke8259@gmail.com>",
+  "dependencies": {
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
+    "fontfaceobserver": "^2.0.9",
+    "morgan": "~1.8.1",
+    "next": "^2.1.0",
+    "octicons": "^5.0.1",
+    "passport": "^0.3.2",
+    "passport-github2": "^0.1.10",
+    "react": "^15.5.3",
+    "react-dom": "^15.5.3",
+    "serve-favicon": "~2.4.2",
+    "styled-components": "^1.4.4",
+    "webfontloader": "^1.6.27"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.2",
+    "babel-jest": "^19.0.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "jest": "^19.0.2",
+    "prettier-standard": "^3.0.1",
+    "standard": "^10.0.1"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  }
+}
