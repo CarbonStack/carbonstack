@@ -19,8 +19,10 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head />
-        <Main />
-        <NextScript />
+        <body>
+          <Main />
+          <NextScript />
+        </body>
       </html>
     )
   }

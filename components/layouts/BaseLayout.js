@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, {injectGlobal} from 'styled-components'
+import styled from 'styled-components'
 
 const Base = styled.div`
   font-family: Roboto;

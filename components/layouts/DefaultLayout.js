@@ -9,7 +9,7 @@ const Main = styled.main`
 
 export default class DefaultLayout extends React.Component {
   render () {
-    const {title, children} = this.props
+    const { title, children } = this.props
     return (
       <BaseLayout>
         <title>{title}</title>

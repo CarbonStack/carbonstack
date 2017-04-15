@@ -16,8 +16,8 @@ app.prepare()
       const httpProxy = require('http-proxy')
       const proxy = httpProxy.createProxyServer()
       server.use('/api', (req, res) => {
-        console.log('Redirecting to http://127.0.0.1:3001/' + req.baseUrl)
-        proxy.web(req, res, { target: 'http://127.0.0.1:3001' })
+        console.log('Redirecting to http://localhost:3001/' + req.baseUrl)
+        proxy.web(req, res, { target: 'http://localhost:3001' })
       })
     } else {
       server.use('/api', router)
