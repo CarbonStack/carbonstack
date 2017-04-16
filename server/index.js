@@ -17,7 +17,9 @@ app.use(cookieParser(process.env.APP_SECRET))
 
 app.use(session({
   secret: process.env.APP_SECRET,
-  store: new FileStore(),
+  store: new FileStore({
+    path: '/tmp/sessions'
+  }),
   resave: false,
   saveUninitialized: false
 }))
