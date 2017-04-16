@@ -2,7 +2,7 @@ const connection = require('./connection')
 
 const UserSchema = require('./schemas/User')
 const IssueSchema = require('./schemas/Issue')
-const CommentSchema = require('./schema/Comment')
+const CommentSchema = require('./schemas/Comment')
 const Rendezvous = require('./schemas/Rendezvous')
 
 module.exports = {

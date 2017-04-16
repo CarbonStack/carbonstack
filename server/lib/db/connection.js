@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
+mongoose.Promise = global.Promise
 
-const connectionURI = process.env.connection_URL
+const connectionURI = process.env.DB_URL
 
 const connection = mongoose.createConnection(connectionURI)
 
@@ -23,15 +24,6 @@ connection.on('reconnected', function () {
 })
 connection.on('disconnected', function () {
   console.log('Mongoconnection disconnected!')
-  connect()
 })
-
-function connect () {
-  mongoose.connect(connectionURI, {
-    server: {auto_reconnect: true}
-  })
-}
-
-connect()
 
 module.exports = connection

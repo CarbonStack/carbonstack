@@ -7,9 +7,19 @@ const User = new Schema({
   },
   email: {
     type: String,
+    required: true,
+    hidden: true
+  },
+  githubId: {
+    type: String,
     required: true
   },
-  github: {
+  githubName: {
+    type: String,
+    required: true
+  },
+  profileImage: {
+    type: String
   }
 })
 
