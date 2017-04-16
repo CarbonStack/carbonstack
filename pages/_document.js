@@ -1,10 +1,16 @@
-import Document, {Head, Main, NextScript} from 'next/document'
+import Document, {
+  Head,
+  Main,
+  NextScript
+} from 'next/document'
 import styleSheet from 'styled-components/lib/models/StyleSheet'
 import '../lib/styles'
+import 'isomorphic-fetch'
 
 export default class MyDocument extends Document {
   static async getInitialProps ({renderPage}) {
     const page = renderPage()
+
     const styles = (
       <style
         dangerouslySetInnerHTML={{
@@ -12,7 +18,11 @@ export default class MyDocument extends Document {
         }}
       />
     )
-    return {...page, styles}
+
+    return {
+      ...page,
+      styles
+    }
   }
 
   render () {
