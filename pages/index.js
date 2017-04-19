@@ -1,26 +1,37 @@
 import React from 'react'
 import DefaultLayout from '../components/layouts/DefaultLayout'
 import styled from 'styled-components'
+import Link from 'next/link'
+import store, { withRedux } from '../lib/redux/store'
+import connect from '../lib/redux/lib/connect'
+import {
+  Provider
+} from 'react-redux'
 
 class Index extends React.Component {
-  msg = 'yolo';
-
-  onButtonClick () {
-    console.log(this.msg)
+  constructor (props) {
+    super(props)
+    this.state = {
+      check: false
+    }
   }
-  onButtonClick2 () {
-    this.msg += '!'
+
+  onLogInButtonClick (e) {
+    const { dispatch } = this.props
+    dispatch({
+      type: 'REQUEST_LOGIN'
+    })
   }
 
   render () {
     return (
       <DefaultLayout title='Carbon Stack'>
-        Welcome to Carbon Stack
-        <button onClick={::this.onButtonClick}>Yolo</button>
-        <button onClick={::this.onButtonClick2}>Bump</button>
+        Welcome to Carbon Stack <Link href='/settings'><a>settings</a></Link>
+        <p>{this.props.app.message}</p>
+        <button onClick={::this.onLogInButtonClick}>Login</button>
       </DefaultLayout>
     )
   }
 }
 
-export default Index
+export default withRedux(connect(x => x)(Index))

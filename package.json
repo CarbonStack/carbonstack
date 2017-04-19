@@ -36,6 +36,10 @@
     "passport-github": "^1.1.0",
     "react": "^15.5.3",
     "react-dom": "^15.5.3",
+    "react-redux": "^5.0.4",
+    "redux": "^3.6.0",
+    "redux-logger": "^3.0.1",
+    "redux-saga": "^0.14.6",
     "session-file-store": "^1.0.0",
     "styled-components": "^1.4.4"
   },
@@ -47,6 +51,7 @@
     "jest": "^19.0.2",
     "nodemon": "^1.11.0",
     "prettier-standard": "^3.0.1",
+    "prop-types": "^15.5.8",
     "standard": "^10.0.1"
   },
   "standard": {

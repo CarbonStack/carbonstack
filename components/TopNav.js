@@ -14,7 +14,7 @@ class TopNav extends React.PureComponent {
       <h1 className='Logo'><Link href='/'><a>Carbon Stack</a></Link></h1>
 
       <div>
-        <Link href='/login'><a>Sign in via Github</a></Link>
+        <a href='/auth/github'>Sign in via Github</a>
       </div>
     </Nav>
   }

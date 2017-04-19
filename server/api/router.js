@@ -8,8 +8,9 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/me', (req, res, next) => {
-  console.log(req.user)
-  res.json(req.user)
+  res.json({
+    user: req.user
+  })
 })
 
 module.exports = router
