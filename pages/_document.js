@@ -6,7 +6,6 @@ import Document, {
 import styleSheet from 'styled-components/lib/models/StyleSheet'
 import '../lib/styles'
 import 'isomorphic-fetch'
-import store from '../lib/redux/store'
 
 export default class MyDocument extends Document {
   static async getInitialProps ({renderPage}) {
@@ -20,12 +19,9 @@ export default class MyDocument extends Document {
       />
     )
 
-    const initStoreState = store.getState()
-
     return {
       ...page,
-      styles,
-      script: `window.__REDUX_INITIAL_STATE__=${JSON.stringify(initStoreState)}`
+      styles
     }
   }
 
@@ -34,12 +30,6 @@ export default class MyDocument extends Document {
       <html>
         <Head />
         <body>
-          <script
-            id='redux-ssr'
-            dangerouslySetInnerHTML={{
-              __html: this.props.script
-            }}
-          />
           <Main />
           <NextScript />
         </body>

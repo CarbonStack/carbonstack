@@ -2,11 +2,8 @@ import React from 'react'
 import DefaultLayout from '../components/layouts/DefaultLayout'
 import styled from 'styled-components'
 import Link from 'next/link'
-import store, { withRedux } from '../lib/redux/store'
+import withRedux from '../lib/redux/withRedux'
 import connect from '../lib/redux/lib/connect'
-import {
-  Provider
-} from 'react-redux'
 
 class Index extends React.Component {
   constructor (props) {
