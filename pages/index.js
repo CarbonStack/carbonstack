@@ -24,7 +24,7 @@ class Index extends React.Component {
     return (
       <DefaultLayout title='Carbon Stack'>
         Welcome to Carbon Stack <Link href='/settings'><a>settings</a></Link>
-        <p>{this.props.app.message}</p>
+        <pre>{JSON.stringify(this.props)}</pre>
         <button onClick={::this.onLogInButtonClick}>Login</button>
       </DefaultLayout>
     )
