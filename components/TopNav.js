@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
-import connect from '../lib/redux/lib/connect'
+import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import appActions from '../lib/redux/app/actions'
 

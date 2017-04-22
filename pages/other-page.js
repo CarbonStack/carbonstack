@@ -5,7 +5,7 @@ import Link from 'next/link'
 import withRedux from '../lib/redux/withRedux'
 import { connect } from 'react-redux'
 
-class Index extends React.Component {
+class OtherPage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -23,12 +23,11 @@ class Index extends React.Component {
   render () {
     return (
       <DefaultLayout title='Carbon Stack'>
-        Welcome to Carbon Stack<Link href='/other-page'><a>other</a></Link>
-        <h2>Redux state</h2>
+        Other page <Link href='/'><a>home</a></Link>
         <pre>{JSON.stringify(this.props)}</pre>
       </DefaultLayout>
     )
   }
 }
 
-export default withRedux(connect(x => x)(Index))
+export default withRedux(connect(x => x)(OtherPage))
