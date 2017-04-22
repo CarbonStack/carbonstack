@@ -29,10 +29,10 @@ passport.use(new GitHubStrategy(githubInfo,
           return User
             .create({
               name: profile.displayName,
-              email: profile.emails[0].value,
+              emails: profile.emails,
               githubId: profile.id,
               githubName: profile.username,
-              profileImage: profile.photos[0].value
+              photos: profile.photos
             })
         }
         return user

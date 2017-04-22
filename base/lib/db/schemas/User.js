@@ -5,10 +5,12 @@ const User = new Schema({
     type: String,
     required: true
   },
-  email: {
-    type: String,
-    required: true,
-    hidden: true
+  emails: {
+    type: [{
+      value: String
+    }],
+    hidden: true,
+    required: true
   },
   githubId: {
     type: String,
@@ -18,9 +20,9 @@ const User = new Schema({
     type: String,
     required: true
   },
-  profileImage: {
-    type: String
-  }
+  photos: [{
+    value: String
+  }]
 })
 
 module.exports = User
