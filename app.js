@@ -1,6 +1,10 @@
 const dev = process.env.NODE_ENV !== 'production'
 if (dev) {
   require('dotenv').config()
+} else {
+  require('dotenv').config({
+    path: '.env.production'
+  })
 }
 
 const express = require('express')
