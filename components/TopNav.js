@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import appActions from '../lib/redux/app/actions'
+import {
+  actions as sessionActions
+} from '../lib/redux/modules/session'
 
 const Nav = styled.nav`
   .Logo a{
@@ -25,7 +27,7 @@ class TopNav extends React.PureComponent {
       <h1 className='Logo'><Link href='/'><a>Carbon Stack</a></Link></h1>
 
       <div>
-        {this.props.app.user == null
+        {this.props.session.user == null
           ? <button onClick={::this.onSignInViaGithubButtonClick}>Sign in via Github</button>
           : <button onClick={::this.onSignOutButtonClick}>Sign Out</button>
         }
@@ -36,7 +38,7 @@ class TopNav extends React.PureComponent {
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators(appActions, dispatch)
+    actions: bindActionCreators(sessionActions, dispatch)
   }
 }
 

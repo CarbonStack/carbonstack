@@ -6,26 +6,10 @@ import withRedux from '../lib/redux/withRedux'
 import { connect } from 'react-redux'
 
 class Index extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      check: false
-    }
-  }
-
-  onLogInButtonClick (e) {
-    const { dispatch } = this.props
-    dispatch({
-      type: 'REQUEST_LOGIN'
-    })
-  }
-
   render () {
     return (
       <DefaultLayout title='Carbon Stack'>
-        Welcome to Carbon Stack<Link href='/other-page'><a>other</a></Link>
-        <h2>Redux state</h2>
-        <pre>{JSON.stringify(this.props)}</pre>
+        Welcome to Carbon Stack
       </DefaultLayout>
     )
   }
