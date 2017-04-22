@@ -13,6 +13,13 @@ const Nav = styled.nav`
   }
 `
 
+const Profile = ({ user }) => {
+  const photoURL = user.photos[0].value
+  return <div>
+    <img width='30' height='30' src={photoURL} /> {user.githubName}
+  </div>
+}
+
 class TopNav extends React.PureComponent {
   onSignInViaGithubButtonClick () {
     this.props.actions.requestSignIn('github')
@@ -27,10 +34,16 @@ class TopNav extends React.PureComponent {
       <h1 className='Logo'><Link href='/'><a>Carbon Stack</a></Link></h1>
 
       <div>
-        {this.props.session.user == null
-          ? <button onClick={::this.onSignInViaGithubButtonClick}>Sign in via Github</button>
-          : <button onClick={::this.onSignOutButtonClick}>Sign Out</button>
+        <div><a>Write an issue</a></div>
+        {this.props.session.user == null ||
+          <Profile user={this.props.session.user} />
         }
+        <div>
+          {this.props.session.user == null
+            ? <button onClick={::this.onSignInViaGithubButtonClick}>Sign in via Github</button>
+            : <button onClick={::this.onSignOutButtonClick}>Sign Out</button>
+          }
+        </div>
       </div>
     </Nav>
   }
