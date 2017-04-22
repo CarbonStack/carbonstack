@@ -1,7 +1,11 @@
+const dev = process.env.NODE_ENV !== 'production'
+if (dev) {
+  require('dotenv').config()
+}
+
 const express = require('express')
 const next = require('next')
 
-const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 const proxy = require('http-proxy-middleware')

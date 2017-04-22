@@ -5,7 +5,6 @@ import Document, {
 } from 'next/document'
 import styleSheet from 'styled-components/lib/models/StyleSheet'
 import '../lib/styles'
-import 'isomorphic-fetch'
 
 export default class MyDocument extends Document {
   static async getInitialProps ({renderPage}) {
