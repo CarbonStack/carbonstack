@@ -20,7 +20,7 @@ const Issue = new Schema({
     set: v => Math.round(v),
     unique: true
   },
-  rendezvous: {
+  rv: {
     type: Schema.Types.ObjectId,
     ref: 'Rendezvous',
     required: true
