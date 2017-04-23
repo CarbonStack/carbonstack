@@ -1,9 +1,11 @@
 import React from 'react'
 import Head from 'next/head'
 import styled from 'styled-components'
-import BaseLayout from './BaseLayout'
 import TopNav from '../TopNav'
 import Footer from '../Footer'
+
+const Wrapper = styled.div`
+`
 
 const Main = styled.main`
 `
@@ -12,7 +14,7 @@ export default class DefaultLayout extends React.Component {
   render () {
     const { title, description, keywords, author, children } = this.props
     return (
-      <BaseLayout>
+      <Wrapper>
         <Head>
           <title>{title == null ? 'Carbon Stack' : title}</title>
           <meta name='description' content={description == null ? 'A democratic media for developers' : description} />
@@ -25,7 +27,7 @@ export default class DefaultLayout extends React.Component {
           {children}
         </Main>
         <Footer />
-      </BaseLayout>
+      </Wrapper>
     )
   }
 }
