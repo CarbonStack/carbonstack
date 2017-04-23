@@ -31,10 +31,12 @@ class TopNav extends React.PureComponent {
 
   render () {
     return <Nav>
-      <h1 className='Logo'><Link href='/'><a>Carbon Stack</a></Link></h1>
+      <div className='left'>
+        <h1 className='Logo'><Link href='/'><a>Carbon Stack</a></Link></h1>
+      </div>
 
-      <div>
-        <div><a>Write an issue</a></div>
+      <div className='right'>
+        <div><Link href='/new'><a>Write an issue</a></Link></div>
         {this.props.session.user == null ||
           <Profile user={this.props.session.user} />
         }
