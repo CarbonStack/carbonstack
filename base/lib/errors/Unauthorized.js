@@ -7,5 +7,7 @@ module.exports = class UnauthorizedError extends Error {
     Object.defineProperty(this, 'status', {
       value: 401
     })
+
+    this.message = 'Unauthorized: you have to login.'
   }
 }

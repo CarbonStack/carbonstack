@@ -2,8 +2,8 @@ import React from 'react'
 import DefaultLayout from '../components/layouts/DefaultLayout'
 import styled from 'styled-components'
 import Link from 'next/link'
-import withRedux from '../lib/redux/withRedux'
 import { connect } from 'react-redux'
+import withBootstrap from '../lib/hocs/withBootstrap'
 
 class Index extends React.Component {
   render () {
@@ -15,4 +15,4 @@ class Index extends React.Component {
   }
 }
 
-export default withRedux(connect(x => x)(Index))
+export default withBootstrap(connect(x => x)(Index))

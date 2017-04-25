@@ -36,7 +36,7 @@ class TopNav extends React.PureComponent {
       </div>
 
       <div className='right'>
-        <div><Link href='/new'><a>Write an issue</a></Link></div>
+        <div><Link href='/nouveau'><a>Write an issue</a></Link></div>
         {this.props.session.user == null ||
           <Profile user={this.props.session.user} />
         }

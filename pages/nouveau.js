@@ -2,9 +2,9 @@ import React from 'react'
 import DefaultLayout from '../components/layouts/DefaultLayout'
 import styled from 'styled-components'
 import Link from 'next/link'
-import withRedux from '../lib/redux/withRedux'
 import { connect } from 'react-redux'
 import api from '../lib/api'
+import withBootstrap from '../lib/hocs/withBootstrap'
 
 const Root = styled.div`
   .hidden {
@@ -12,11 +12,10 @@ const Root = styled.div`
   }
 `
 
-class New extends React.Component {
+class Nouveau extends React.Component {
   static async getInitialProps (ctx) {
     const { query } = ctx
-    const { rvs } = await api.rendezvous.index(ctx)
-
+    const { rvs } = await api.pages.nouveau(ctx)
     return {
       query,
       rvs
@@ -73,19 +72,7 @@ class New extends React.Component {
   }
 
   render () {
-    const { rvs, session } = this.props
-    /**
-     * FIXME: this should be done before fetching rvs
-     *
-     * I'm going to create a custom error handler to intercept error
-     * If user have no session or got 401 status from fetching req,
-     * we should halt instantiating the page component and return null with redirecting task.
-     */
-    if (session.user == null && typeof window !== 'undefined') {
-      window.location.href = '/login'
-      return null
-    }
-
+    const { rvs } = this.props
     const { issue } = this.state
 
     return (
@@ -185,4 +172,4 @@ class New extends React.Component {
   }
 }
 
-export default withRedux(connect(x => x)(New))
+export default withBootstrap(connect(x => x)(Nouveau))

@@ -5,14 +5,15 @@ import Link from 'next/link'
 import withBootstrap from '../lib/hocs/withBootstrap'
 import { connect } from 'react-redux'
 
-class Login extends React.Component {
+class GoodBye extends React.Component {
   render () {
     return (
       <DefaultLayout title='Carbon Stack'>
-        Login
+        <h1>Good Bye</h1>
+        <p>I hope you can come back soon!!</p>
       </DefaultLayout>
     )
   }
 }
 
-export default withBootstrap(connect(x => x)(Login))
+export default withBootstrap(GoodBye)
