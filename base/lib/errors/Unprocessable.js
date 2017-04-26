@@ -7,5 +7,7 @@ module.exports = class UnprocessableError extends Error {
     Object.defineProperty(this, 'status', {
       value: 422
     })
+
+    this.message = 'Unprocessable: your parameters are not valid. please check again.'
   }
 }
