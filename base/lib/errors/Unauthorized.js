@@ -8,6 +8,8 @@ module.exports = class UnauthorizedError extends Error {
       value: 401
     })
 
-    this.message = 'Unauthorized: you have to login.'
+    if (this.message == null) {
+      this.message = 'Unauthorized: you have to login.'
+    }
   }
 }

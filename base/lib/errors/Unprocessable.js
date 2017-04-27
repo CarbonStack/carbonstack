@@ -8,6 +8,8 @@ module.exports = class UnprocessableError extends Error {
       value: 422
     })
 
-    this.message = 'Unprocessable: your parameters are not valid. please check again.'
+    if (this.message == null) {
+      this.message = 'Unprocessable: your parameters are not valid. please check again.'
+    }
   }
 }

@@ -8,6 +8,8 @@ module.exports = class NotFound extends Error {
       value: 404
     })
 
-    this.message = 'NotFound: the resource doesn\'t exist. check the url.'
+    if (this.message == null) {
+      this.message = 'NotFound: the resource doesn\'t exist. check the url.'
+    }
   }
 }
