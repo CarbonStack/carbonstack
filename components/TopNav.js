@@ -51,10 +51,16 @@ class TopNav extends React.PureComponent {
   }
 }
 
+const mapStateToProps = ({session}) => {
+  return {
+    session
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     actions: bindActionCreators(sessionActions, dispatch)
   }
 }
 
-export default connect(state => state, mapDispatchToProps)(TopNav)
+export default connect(mapStateToProps, mapDispatchToProps)(TopNav)

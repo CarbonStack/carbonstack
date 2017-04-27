@@ -5,6 +5,13 @@ import Link from 'next/link'
 import { connect } from 'react-redux'
 import api from '../lib/api'
 import withBootstrap from '../lib/hocs/withBootstrap'
+import { bindActionCreators } from 'redux'
+import actions, {
+  IDLE,
+  WORKING,
+  DONE,
+  ERROR
+} from '../lib/redux/modules/nouveau/actions'
 
 const Root = styled.div`
   .hidden {
@@ -25,44 +32,21 @@ class Nouveau extends React.Component {
   constructor (props) {
     super(props)
 
-    const type = props.query.type === 'link'
-      ? 'link'
-      : 'note'
-
     this.state = {
       issue: {
         title: '',
         photos: '',
         content: '',
         rv: 'carbonstack',
-        link: '',
-        type
+        link: ''
       }
     }
-  }
-
-  onLinkButtonClick () {
-    this.setState({
-      issue: Object.assign({}, this.state.issue, {
-        type: 'link'
-      })
-    })
-  }
-
-  onNoteButtonClick () {
-    this.setState({
-      issue: {
-        ...this.state.issue,
-        type: 'note'
-      }
-    })
   }
 
   onIssueChange () {
     this.setState({
       issue: {
         ...this.state.issue,
-        link: this.refs.link.value,
         title: this.refs.title.value,
         image: this.refs.image.value,
         content: this.refs.content.value,
@@ -71,8 +55,15 @@ class Nouveau extends React.Component {
     })
   }
 
+  onSubmitButtonClick () {
+    const { actions } = this.props
+    const { issue } = this.state
+
+    actions.requestCreateIssue(issue)
+  }
+
   render () {
-    const { rvs } = this.props
+    const { rvs, nouveau } = this.props
     const { issue } = this.state
 
     return (
@@ -98,35 +89,6 @@ class Nouveau extends React.Component {
               })}
             </select>
           </div>
-          <div className='type-select'>
-            <label>Issue Type</label>
-
-            <div className='control'>
-              <button onClick={::this.onNoteButtonClick}>Note</button>
-              <button onClick={::this.onLinkButtonClick}>Just a link</button>
-            </div>
-
-            <details className='description'>
-              <summary>What are they?</summary>
-              <dl>
-                <dt>Note</dt>
-                <dd>You can write markdown note directly. It would be the best choice if you don't have blog yet. Somewhen, we are going to provide a way to export your own notes to your github pages. :)</dd>
-                <dt>Just a link</dt>
-                <dd>If you want to share some resource not yours or already posted other place like your blog or medium, this type of issue would be best choice. This type of issue is just like a posting of hacker news and reddit.</dd>
-              </dl>
-            </details>
-          </div>
-
-          <div className={`form-section${issue.type === 'link' ? '' : ' hidden'}`}>
-            <label htmlFor='link'>Link</label>
-            <input
-              id='link'
-              ref='link'
-              type='text'
-              value={issue.link}
-              onChange={::this.onIssueChange}
-            />
-          </div>
 
           <div className='form-section'>
             <label htmlFor='title'>Title</label>
@@ -140,7 +102,7 @@ class Nouveau extends React.Component {
           </div>
 
           <div className='form-section'>
-            <label htmlFor='image'>Image</label>
+            <label htmlFor='image'>Cover Image</label>
             <input
               id='image'
               ref='image'
@@ -150,20 +112,29 @@ class Nouveau extends React.Component {
             <blockqutoe>Image is not supported yet</blockqutoe>
           </div>
 
-          {issue.type === 'note' &&
-            <div className='form-section'>
-              <label htmlFor='content'>Content</label>
-              <textarea
-                id='content'
-                ref='content'
-                value={issue.content}
-                onChange={::this.onIssueChange}
-              />
-            </div>
-          }
+          <div className='form-section'>
+            <label htmlFor='content'>Content</label>
+            <textarea
+              id='content'
+              ref='content'
+              value={issue.content}
+              onChange={::this.onIssueChange}
+            />
+          </div>
+
           <div>
             <button>Cancel</button>
-            <button>Submit</button>
+            {nouveau.status === WORKING
+              ? <button
+                disabled
+              >Submitting...</button>
+              : nouveau.status === ERROR
+              ? <button>Error</button>
+              : <button
+                onClick={::this.onSubmitButtonClick}
+              >Submit</button>
+            }
+
           </div>
           <pre>{JSON.stringify(issue, null, 2)}</pre>
         </Root>
@@ -172,4 +143,16 @@ class Nouveau extends React.Component {
   }
 }
 
-export default withBootstrap(connect(x => x)(Nouveau))
+const mapStateToProps = ({nouveau}) => {
+  return {
+    nouveau
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators(actions, dispatch)
+  }
+}
+
+export default withBootstrap(connect(mapStateToProps, mapDispatchToProps)(Nouveau))
