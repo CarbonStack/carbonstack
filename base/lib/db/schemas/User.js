@@ -22,7 +22,11 @@ const User = new Schema({
   },
   photos: [{
     value: String
-  }]
+  }],
+  experience: {
+    type: Number,
+    default: 0
+  }
 })
 
 module.exports = User

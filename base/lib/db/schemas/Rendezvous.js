@@ -11,6 +11,10 @@ const Rendezvous = new Schema({
   },
   description: {
     type: String
+  },
+  issueCount: {
+    type: Number,
+    default: 0
   }
 })
 

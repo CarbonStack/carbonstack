@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose')
 
-const Comment = new Schema({
+const IssueComment = new Schema({
   content: {
     type: String,
     required: true
@@ -17,4 +17,4 @@ const Comment = new Schema({
   }
 })
 
-module.exports = Comment
+module.exports = IssueComment

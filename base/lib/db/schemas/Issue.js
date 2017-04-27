@@ -5,8 +5,9 @@ const Issue = new Schema({
     type: String,
     required: true
   },
-  content: {
-    type: String,
+  latestCommit: {
+    type: Schema.Types.ObjectId,
+    ref: 'IssueCommit',
     required: true
   },
   writer: {
@@ -14,16 +15,27 @@ const Issue = new Schema({
     ref: 'User',
     required: true
   },
+  contributors: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }],
   number: {
     type: Number,
     get: v => Math.round(v),
-    set: v => Math.round(v),
-    unique: true
+    set: v => Math.round(v)
   },
   rv: {
     type: Schema.Types.ObjectId,
     ref: 'Rendezvous',
     required: true
+  },
+  creatdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
   }
 })
 
