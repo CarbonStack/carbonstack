@@ -1,3 +1,5 @@
 module.exports = {
-  nouveau: require('./nouveau')
+  nouveau: require('./nouveau'),
+  rv: require('./rv'),
+  issue: require('./issue')
 }

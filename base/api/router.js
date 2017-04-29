@@ -7,7 +7,7 @@ const issues = require('./modules/issues')
 
 router.get('/', (req, res, next) => {
   res.json({
-    message: 'wwa'
+    message: 'Welcome to Carbonstack API server.'
   })
 })
 
@@ -15,6 +15,8 @@ router.get('/session', session.show)
 router.delete('/session', session.destroy)
 
 router.get('/pages/nouveau', pages.nouveau)
+router.get('/pages/rv/:rvUniqueName', pages.rv)
+router.get('/pages/rv/:rvUniqueName/issues/:issueNumber', pages.issue)
 
 router.get('/rendezvous', rendezvous.index)
 
