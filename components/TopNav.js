@@ -6,10 +6,33 @@ import { bindActionCreators } from 'redux'
 import {
   actions as sessionActions
 } from '../lib/redux/modules/session'
+import Logo from './Logo'
 
 const Nav = styled.nav`
-  .Logo a{
+  height: 60px;
+  display: flex;
 
+  &>.left {
+    flex: 1;
+    .Logo {
+      font-size: 18px;
+      line-height: 60px;
+      height: 60px;
+      margin: 0;
+      padding: 0 0 0 15px;
+      img {
+        vertical-align: middle;
+      }
+      a {
+        padding-left: 5px;
+        text-decoration: none;
+        vertical-align: middle;
+      }
+    }
+  }
+  &>.right {
+    display: flex;
+    align-items: row;
   }
 `
 
@@ -32,7 +55,10 @@ class TopNav extends React.PureComponent {
   render () {
     return <Nav>
       <div className='left'>
-        <h1 className='Logo'><Link href='/'><a>Carbon Stack</a></Link></h1>
+        <h1 className='Logo'>
+          <img src='/static/assets/images/logo.svg' />
+          <Link href='/'><a>Carbon Stack</a></Link>
+        </h1>
       </div>
 
       <div className='right'>
