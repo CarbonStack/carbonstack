@@ -1,20 +1,14 @@
 import React from 'react'
 import Head from 'next/head'
-import styled from 'styled-components'
 import TopNav from '../TopNav'
 import Footer from '../Footer'
-
-const Wrapper = styled.div`
-`
-
-const Main = styled.main`
-`
 
 export default class DefaultLayout extends React.Component {
   render () {
     const { title, description, keywords, author, children } = this.props
+
     return (
-      <Wrapper>
+      <div>
         <Head>
           <title>{title == null ? 'Carbon Stack' : title}</title>
 
@@ -31,11 +25,11 @@ export default class DefaultLayout extends React.Component {
           <link rel='mask-icon' href='/static/assets/images/safari-pinned-tab.svg' color='#5bbad5' />
         </Head>
         <TopNav />
-        <Main>
+        <main>
           {children}
-        </Main>
+        </main>
         <Footer />
-      </Wrapper>
+      </div>
     )
   }
 }

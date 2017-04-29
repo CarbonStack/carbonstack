@@ -6,13 +6,18 @@ import { bindActionCreators } from 'redux'
 import {
   actions as sessionActions
 } from '../lib/redux/modules/session'
-import Logo from './Logo'
+import { largeBreakpoint } from '../lib/styles/media'
+import { monospacedFontFamily, textColor, boxShadow } from '../lib/styles/variables'
 
 const Nav = styled.nav`
   height: 60px;
   display: flex;
+  width: 100%;
+  max-width: ${largeBreakpoint}em;
+  margin: 0 auto;
+  font-family: ${monospacedFontFamily};
 
-  &>.left {
+  .left {
     flex: 1;
     .Logo {
       font-size: 18px;
@@ -22,24 +27,36 @@ const Nav = styled.nav`
       padding: 0 0 0 15px;
       img {
         vertical-align: middle;
+        padding-right: 5px;
       }
       a {
         padding-left: 5px;
-        text-decoration: none;
         vertical-align: middle;
+        color: ${textColor};
       }
     }
   }
-  &>.right {
+
+  .right {
     display: flex;
     align-items: row;
+    line-height: 60px;
+    height: 60px;
+    margin: 0;
+    .profile {
+      padding: 0 5px;
+    }
+    .profileImage {
+      border-radius: 22.5px;
+      vertical-align: middle;
+    }
   }
 `
 
 const Profile = ({ user }) => {
   const photoURL = user.photos[0].value
-  return <div>
-    <img width='30' height='30' src={photoURL} /> {user.githubName}
+  return <div className='profile'>
+    <img className='profileImage' width='40' height='40' src={photoURL} />
   </div>
 }
 
@@ -56,13 +73,14 @@ class TopNav extends React.PureComponent {
     return <Nav>
       <div className='left'>
         <h1 className='Logo'>
-          <img src='/static/assets/images/logo.svg' />
-          <Link href='/'><a>Carbon Stack</a></Link>
+          <Link href='/'>
+            <a><img src='/static/assets/images/logo.svg' />Carbon Stack</a>
+          </Link>
         </h1>
       </div>
 
       <div className='right'>
-        <div><Link href='/nouveau'><a>Write an issue</a></Link></div>
+        <div className='control'><Link href='/nouveau'><a>Write an issue</a></Link></div>
         {this.props.session.user == null ||
           <Profile user={this.props.session.user} />
         }

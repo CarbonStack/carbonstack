@@ -4,7 +4,7 @@ import Document, {
   NextScript
 } from 'next/document'
 import styleSheet from 'styled-components/lib/models/StyleSheet'
-import '../lib/styles'
+import '../lib/styles/injectors'
 
 export default class MyDocument extends Document {
   static async getInitialProps ({renderPage}) {
