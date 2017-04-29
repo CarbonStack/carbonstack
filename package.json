@@ -6,8 +6,8 @@
     "start": "NODE_ENV=production concurrently -c \"green,blue\" -n \"next,base\" -p \"name\" \"npm run next:serve\" \"npm run base:serve\"",
     "build": "next build",
     "dev": "concurrently -c \"green,blue\" -n \"next,base\" -p \"name\" \"npm run next:dev\" \"npm run base:dev\"",
-    "next:dev": "nodemon -V --watch app.js app.js",
-    "next:serve": "node app.js",
+    "next:dev": "nodemon -V --watch next next/app.js",
+    "next:serve": "node next/app.js",
     "base:dev": "nodemon -V --watch base base/index.js",
     "base:serve": "node base/index.js",
     "pretest": "npm run lint --silent",
@@ -41,7 +41,8 @@
     "redux-logger": "^3.0.1",
     "redux-saga": "^0.14.6",
     "session-file-store": "^1.0.0",
-    "styled-components": "^1.4.4"
+    "styled-components": "^1.4.4",
+    "validator": "^7.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.2",

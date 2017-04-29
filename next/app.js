@@ -28,6 +28,21 @@ app.prepare()
     server.use('/auth', proxy('http://127.0.0.1:3001'))
     server.use('/ws', proxy('http://127.0.0.1:3001'))
 
+    server.get('/rv', (req, res) => {
+      return res.redirect('/')
+    })
+    server.get('/rv/:rvUniqueName', (req, res) => {
+      app.render(req, res, '/rv', {
+        rvUniqueName: req.params.rvUniqueName
+      })
+    })
+    server.get('/rv/:rvUniqueName/:issueNumber', (req, res) => {
+      app.render(req, res, '/issue', {
+        rvUniqueName: req.params.rvUniqueName,
+        issueNumber: req.params.issueNumber
+      })
+    })
+
     server.get('*', (req, res) => {
       return handle(req, res)
     })

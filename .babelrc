@@ -2,5 +2,8 @@
   "presets": [
     "next/babel",
     "stage-0"
+  ],
+  "ignore": [
+    "base/**/*.js"
   ]
 }
