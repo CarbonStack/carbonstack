@@ -9,8 +9,9 @@ import IssueList from '../components/rv/IssueList'
 
 class RvPage extends React.Component {
   static async getInitialProps (ctx) {
-    const { req } = ctx
-    const { rv, issues } = await api.pages.rv(req.params.rvUniqueName, ctx)
+    const { query } = ctx
+    const { rv, issues } = await api.pages.rv(query.rvUniqueName, ctx)
+    console.log(query, rv)
 
     return {
       rv,

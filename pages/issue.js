@@ -8,8 +8,8 @@ import api from '../lib/api'
 
 class IssuePage extends React.Component {
   static async getInitialProps (ctx) {
-    const { req } = ctx
-    const { issue, latestCommit } = await api.pages.issue(req.params.rvUniqueName, req.params.issueNumber, ctx)
+    const { query } = ctx
+    const { issue, latestCommit } = await api.pages.issue(query.rvUniqueName, query.issueNumber, ctx)
 
     return {
       issue,

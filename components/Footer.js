@@ -9,7 +9,7 @@ const Root = styled.footer`
   display: flex;
   width: 100%;
   max-width: ${largeBreakpoint}em;
-  margin: 35px auto 0;
+  margin: 105px auto 0;
   font-family: ${monospacedFontFamily};
   p {
     width: 80%;

@@ -32,15 +32,10 @@ app.prepare()
       return res.redirect('/')
     })
     server.get('/rv/:rvUniqueName', (req, res) => {
-      app.render(req, res, '/rv', {
-        rvUniqueName: req.params.rvUniqueName
-      })
+      app.render(req, res, '/rv', Object.assign(req.params, req.query))
     })
     server.get('/rv/:rvUniqueName/:issueNumber', (req, res) => {
-      app.render(req, res, '/issue', {
-        rvUniqueName: req.params.rvUniqueName,
-        issueNumber: req.params.issueNumber
-      })
+      app.render(req, res, '/issue', Object.assign(req.params, req.query))
     })
 
     server.get('*', (req, res) => {

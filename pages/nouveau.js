@@ -21,10 +21,8 @@ const Root = styled.div`
 
 class Nouveau extends React.Component {
   static async getInitialProps (ctx) {
-    const { query } = ctx
     const { rvs } = await api.pages.nouveau(ctx)
     return {
-      query,
       rvs
     }
   }

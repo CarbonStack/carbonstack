@@ -7,7 +7,7 @@ import {
   actions as sessionActions
 } from '../lib/redux/modules/session'
 import { largeBreakpoint } from '../lib/styles/media'
-import { monospacedFontFamily, textColor, boxShadow } from '../lib/styles/variables'
+import { monospacedFontFamily, textColor } from '../lib/styles/variables'
 
 const Nav = styled.nav`
   height: 60px;
