@@ -5,6 +5,10 @@ const Rendezvous = new Schema({
     type: String,
     required: true
   },
+  language: {
+    type: String,
+    required: true
+  },
   name: {
     type: String,
     required: true

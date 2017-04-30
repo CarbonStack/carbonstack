@@ -13,12 +13,14 @@ const seeds = [
   {
     uniqueName: 'carbonstack',
     name: 'Carbon Stack',
-    description: ''
+    language: 'any',
+    description: 'Give your opinion to Carbon Stack!'
   },
   {
     uniqueName: 'reactkr',
     name: 'React Korea',
-    description: ''
+    language: 'kor',
+    description: 'React Korea Usergroup'
   }
 ]
 
@@ -44,5 +46,8 @@ function findOrCreateRV (input) {
         return Rendezvous
           .create(input)
       }
+      rv.set(input)
+
+      return rv.save()
     })
 }
