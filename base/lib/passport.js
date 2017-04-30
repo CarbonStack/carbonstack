@@ -5,7 +5,8 @@ const GitHubStrategy = require('passport-github').Strategy
 const githubInfo = {
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
-  callbackURL: 'http://localhost:3000/auth/github/callback'
+  callbackURL: 'http://localhost:3000/auth/github/callback',
+  scope: 'user:email'
 }
 
 passport.serializeUser(function (user, done) {
@@ -28,7 +29,7 @@ passport.use(new GitHubStrategy(githubInfo,
         if (user == null) {
           return User
             .create({
-              name: profile.displayName,
+              name: profile.displayName || profile.username,
               emails: profile.emails,
               githubId: profile.id,
               githubName: profile.username,

@@ -1,17 +1,14 @@
 const { Rendezvous } = require('../../../lib/db/models')
 const { Unauthorized } = require('../../../lib/errors')
 
-function nouveau (req, res, next) {
-  if (req.user == null) {
-    return next(new Unauthorized())
-  }
+async function nouveau (req, res, next) {
+  if (req.user == null) throw new Unauthorized()
 
-  Rendezvous.find({})
-    .then(rvs => {
-      res.json({
-        rvs
-      })
-    })
+  const rvs = await Rendezvous.find({})
+
+  res.json({
+    rvs
+  })
 }
 
 module.exports = nouveau

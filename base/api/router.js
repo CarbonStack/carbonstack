@@ -15,7 +15,8 @@ router.get('/', (req, res, next) => {
 router.get('/session', session.show)
 router.delete('/session', session.destroy)
 
-router.get('/pages/nouveau', pages.nouveau)
+router.get('/pages/home', asyncWrap(pages.home))
+router.get('/pages/nouveau', asyncWrap(pages.nouveau))
 router.get('/pages/rv/:rvUniqueName', asyncWrap(pages.rv))
 router.get('/pages/rv/:rvUniqueName/issues/:issueNumber', asyncWrap(pages.issue))
 
