@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import withBootstrap from '../lib/hocs/withBootstrap'
 import media from '../lib/styles/media'
 import api from '../lib/api'
-import LanguageEmoji from '../components/LanguageEmoji'
+import LanguageEmoji from '../components/shared/LanguageEmoji'
 
 const Main = styled.div`
   width: 80%;
