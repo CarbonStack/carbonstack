@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import { connect } from 'react-redux'
 import api from '../lib/api'
+import Head from 'next/head'
 import withBootstrap from '../lib/hocs/withBootstrap'
 import { bindActionCreators } from 'redux'
 import actions, {
@@ -12,10 +13,41 @@ import actions, {
   DONE,
   ERROR
 } from '../lib/redux/modules/nouveau/actions'
+import media from '../lib/styles/media'
+import { monospacedFontFamily } from '../lib/styles/variables'
+import MarkdownEditor from '../components/shared/MarkdownEditor'
 
 const Root = styled.div`
-  .hidden {
-    display: none;
+  width: 80%;
+  margin: 0 auto;
+  padding: 0 15px;
+  ${media.small`
+    width: 100%;
+  `}
+  &>.rvSelect {
+    margin-bottom: 0.5em;
+    select {
+      vertial-align: middle;
+      font-size: 1.2em;
+      padding: 10px 20px;
+    }
+  }
+  &>.title {
+    display: flex;
+  }
+  &>.title .title-input {
+    font-size: 2em;
+    font-family: ${monospacedFontFamily};
+    flex: 1;
+    min-width: 0;
+  }
+  &>.control {
+    margin: 0.25em 0;
+    text-align: right;
+    button {
+      margin-left: 5px;
+      padding: 10px 25px;
+    }
   }
 `
 
@@ -33,12 +65,14 @@ class Nouveau extends React.Component {
     this.state = {
       issue: {
         title: '',
-        photos: '',
         content: '',
-        rv: 'carbonstack',
-        link: ''
+        rv: 'carbonstack'
       }
     }
+  }
+
+  componentDidMount () {
+    this.refs.title.focus()
   }
 
   onIssueChange () {
@@ -46,7 +80,6 @@ class Nouveau extends React.Component {
       issue: {
         ...this.state.issue,
         title: this.refs.title.value,
-        image: this.refs.image.value,
         content: this.refs.content.value,
         rv: this.refs.rv.value
       }
@@ -67,10 +100,8 @@ class Nouveau extends React.Component {
     return (
       <DefaultLayout title='New issue - Carbon Stack'>
         <Root>
-
-          <h1>New issue</h1>
-          <div>
-            <label htmlFor='rv'>Rendezvous point</label>
+          <div className='rvSelect'>
+            <label htmlFor='rv'>To </label>
             <select
               id='rv'
               ref='rv'
@@ -86,41 +117,30 @@ class Nouveau extends React.Component {
                 </option>
               })}
             </select>
+            <label htmlFor='rv'> rendezvous point</label>
           </div>
 
-          <div className='form-section'>
-            <label htmlFor='title'>Title</label>
+          <div className='title'>
             <input
-              id='title'
+              className='title-input'
               ref='title'
               type='text'
               value={issue.title}
+              placeholder={'What\'s up?'}
               onChange={::this.onIssueChange}
             />
           </div>
 
           <div className='form-section'>
-            <label htmlFor='image'>Cover Image</label>
-            <input
-              id='image'
-              ref='image'
-              type='file'
-              disabled
-            />
-            <blockqutoe>Image is not supported yet</blockqutoe>
-          </div>
-
-          <div className='form-section'>
-            <label htmlFor='content'>Content</label>
-            <textarea
-              id='content'
+            <MarkdownEditor
               ref='content'
               value={issue.content}
+              placeholder='Describe the issue...'
               onChange={::this.onIssueChange}
             />
           </div>
 
-          <div>
+          <div className='control'>
             <button>Cancel</button>
             {nouveau.status === WORKING
               ? <button
@@ -128,13 +148,11 @@ class Nouveau extends React.Component {
               >Submitting...</button>
               : nouveau.status === ERROR
               ? <button>Error</button>
-              : <button
+              : <button className='primary'
                 onClick={::this.onSubmitButtonClick}
               >Submit</button>
             }
-
           </div>
-          <pre>{JSON.stringify(issue, null, 2)}</pre>
         </Root>
       </DefaultLayout>
     )

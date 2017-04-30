@@ -41,7 +41,7 @@ const Main = styled.div`
 
 class Index extends React.Component {
   static async getInitialProps (ctx) {
-    const { rvs } = await api.pages.nouveau(ctx)
+    const { rvs } = await api.pages.home(ctx)
 
     return {
       rvs

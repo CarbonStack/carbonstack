@@ -11,6 +11,7 @@ const Root = styled.footer`
   max-width: ${largeBreakpoint}em;
   margin: 105px auto 0;
   font-family: ${monospacedFontFamily};
+  text-align: center;
   p {
     width: 80%;
     margin: 0 auto;

@@ -3,3 +3,5 @@ node_modules
 .env*
 *.log
 sessions
+static/assets/vendor/*
+!static/assets/vendor/.gitkeep
