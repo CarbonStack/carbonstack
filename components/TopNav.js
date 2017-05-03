@@ -14,14 +14,14 @@ const Nav = styled.nav`
   display: flex;
   width: 100%;
   max-width: ${largeBreakpoint}em;
-  margin: 0 auto;
+  margin: 0 auto 10px;
   font-family: ${monospacedFontFamily};
 
   .left {
     flex: 1;
+    line-height: 60px;
     .Logo {
       font-size: 18px;
-      line-height: 60px;
       height: 60px;
       margin: 0;
       padding: 0 0 0 15px;
@@ -40,10 +40,10 @@ const Nav = styled.nav`
   .right {
     display: flex;
     align-items: row;
-    line-height: 60px;
     height: 60px;
+    line-height: 60px;
     margin: 0;
-    .control {
+    .nouveau {
       margin: 0 5px;
     }
     .profile {
@@ -53,6 +53,15 @@ const Nav = styled.nav`
     .profileImage {
       border-radius: 22.5px;
       vertical-align: middle;
+    }
+    .signin {
+      button {
+        line-height: 35px;
+        height: 35px;
+        vertical-align: middle;
+        padding: 0 10px;
+        margin: 0 5px;
+      }
     }
   }
 `
@@ -78,13 +87,13 @@ class TopNav extends React.PureComponent {
       <div className='left'>
         <h1 className='Logo'>
           <Link href='/'>
-            <a><img src='/static/assets/images/logo.svg' />Carbon Stack</a>
+            <a><img src='https://unpkg.com/@carbonstack/favicon@0.0.1/assets/logo.svg' />Carbon Stack</a>
           </Link>
         </h1>
       </div>
 
       <div className='right'>
-        <div className='control'>
+        <div className='nouveau'>
           <Link href={{
             pathname: '/nouveau',
             query: {
@@ -95,7 +104,7 @@ class TopNav extends React.PureComponent {
         {this.props.session.user == null ||
           <Profile user={this.props.session.user} />
         }
-        <div>
+        <div className='signin'>
           {this.props.session.user == null
             ? <button onClick={::this.onSignInViaGithubButtonClick}>Sign in via Github</button>
             : <button onClick={::this.onSignOutButtonClick}>Sign Out</button>

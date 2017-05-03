@@ -7,6 +7,7 @@ import withBootstrap from '../lib/hocs/withBootstrap'
 import media from '../lib/styles/media'
 import api from '../lib/api'
 import LanguageEmoji from '../components/shared/LanguageEmoji'
+import { monospacedFontFamily } from '../lib/styles/variables'
 
 const Main = styled.div`
   width: 80%;
@@ -17,6 +18,9 @@ const Main = styled.div`
   `}
   .jumbotron {
     padding: 2em 0 0;
+    h1 {
+      font-size: 4em;
+    }
   }
   .rvList {
     margin: 4em 0;

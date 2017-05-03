@@ -4,14 +4,12 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import { connect } from 'react-redux'
 import api from '../lib/api'
-import Head from 'next/head'
 import withBootstrap from '../lib/hocs/withBootstrap'
 import { bindActionCreators } from 'redux'
 import actions, {
-  IDLE,
   WORKING,
-  DONE,
-  ERROR
+  ERROR,
+  DONE
 } from '../lib/redux/modules/nouveau/actions'
 import media from '../lib/styles/media'
 import {
@@ -33,6 +31,7 @@ const Root = styled.div`
       vertial-align: middle;
       font-size: 1.2em;
       padding: 10px 20px;
+      font-family: ${monospacedFontFamily};
     }
   }
   &>.title {
@@ -43,6 +42,8 @@ const Root = styled.div`
     font-family: ${monospacedFontFamily};
     flex: 1;
     min-width: 0;
+    border-radius: 0;
+    border-width: 0 0 1px;
   }
   &>.control {
     margin: 0.25em 0;
@@ -52,7 +53,9 @@ const Root = styled.div`
     }
     button {
       margin-left: 5px;
-      padding: 10px 25px;
+      padding: 0 15px;
+      font-family: ${monospacedFontFamily};
+      height: 35px;
     }
   }
 `
@@ -93,6 +96,10 @@ class Nouveau extends React.Component {
         rv: this.refs.rv.value
       }
     })
+  }
+
+  onBackButtonClick () {
+    window.history.back()
   }
 
   onSubmitButtonClick () {
@@ -136,7 +143,7 @@ class Nouveau extends React.Component {
               ref='title'
               type='text'
               value={issue.title}
-              placeholder={'What\'s up?'}
+              placeholder={'What\'s up? (title)'}
               onChange={::this.onIssueChange}
             />
           </div>
@@ -145,7 +152,7 @@ class Nouveau extends React.Component {
             <MarkdownEditor
               ref='content'
               value={issue.content}
-              placeholder='Describe the issue...'
+              placeholder='Describe the issue... (content)'
               onChange={::this.onIssueChange}
             />
           </div>
@@ -154,10 +161,12 @@ class Nouveau extends React.Component {
             <span className='error'>
               {nouveau.error != null && nouveau.error.data.message}
             </span>
-            <button>Cancel</button>
+            <button
+              onClick={::this.onBackButtonClick}
+            >Cancel</button>
             <button
               className='primary'
-              disabled={nouveau.status === WORKING}
+              disabled={nouveau.status === WORKING || nouveau.status === DONE}
               onClick={::this.onSubmitButtonClick}
             >
               {nouveau.status === WORKING

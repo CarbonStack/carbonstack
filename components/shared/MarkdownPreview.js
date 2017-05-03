@@ -15,6 +15,11 @@ const Empty = styled.div`
 const IDLE = 'MarkdownPreview/IDLE'
 const WORKING = 'MarkdownPreview/WORKING'
 
+const Root = styled.div`
+  overflow-x: hidden;
+  overflow-y: scroll;
+`
+
 class MarkdownPreview extends React.PureComponent {
   constructor (props) {
     super(props)
@@ -55,12 +60,12 @@ class MarkdownPreview extends React.PureComponent {
   }
 
   render () {
-    return <div>
+    return <Root className='markdown-body'>
       {(this.state.rendered == null || this.state.rendered.props.children == null) &&
         <Empty>Empty Content</Empty>
       }
       {this.state.rendered}
-    </div>
+    </Root>
   }
 }
 

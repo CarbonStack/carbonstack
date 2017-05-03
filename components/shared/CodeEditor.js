@@ -8,7 +8,7 @@ class CodeEditor extends React.PureComponent {
 
   componentDidMount () {
     const { CodeMirror } = window
-    CodeMirror.modeURL = '/static/assets/vendor/codeMirror-5.25.2/mode/%N/%N.js'
+    CodeMirror.modeURL = 'https://unpkg.com/codemirror@5.25.2/mode/%N/%N.js'
     const { value, mode, placeholder = '' } = this.props
     this.value = value
     this.codeMirror = CodeMirror.fromTextArea(this.editor, {
@@ -76,6 +76,10 @@ class CodeEditor extends React.PureComponent {
 
   focus () {
     this.codeMirror.focus()
+  }
+
+  refresh () {
+    this.codeMirror.refresh()
   }
 
   render () {

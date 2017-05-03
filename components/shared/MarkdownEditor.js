@@ -26,8 +26,8 @@ const Root = styled.div`
   }
   .panel:last-child {
     padding: 10px;
-    border: 1px solid ${borderColor};
-    border-radius: 4px;
+    border-top: 1px solid ${borderColor};
+    border-bottom: 1px solid ${borderColor};
   }
   &.editor {
     .panel:first-child {
@@ -51,15 +51,19 @@ const Root = styled.div`
     right: 0;
     bottom: 0;
     .control {
-      height: 2em;
-    margin: 0.5em 0.5em 0;
+      height: 35px;
+      margin: 5px 20px 0;
+      button {
+        height: 30px;
+      }
     }
     .panel {
       position: absolute;
-      top: 2em;
+      top: 35px;
       bottom: 0;
       overflow: auto;
       border-radius: 0;
+      border-right: 1px solid ${borderColor};
       .CodeMirror {
         border: none;
         border-top: 1px solid ${borderColor};
@@ -111,6 +115,7 @@ class MarkdownEditor extends React.PureComponent {
       this.setState({
         status: EDITOR
       }, () => {
+        this.refreshEditor()
         this.focusEditor()
       })
     }
@@ -129,6 +134,7 @@ class MarkdownEditor extends React.PureComponent {
       this.setState({
         status: SPLIT
       }, () => {
+        this.refreshEditor()
         this.focusEditor()
       })
     }
@@ -136,6 +142,10 @@ class MarkdownEditor extends React.PureComponent {
 
   focusEditor () {
     this.refs.editor.focus()
+  }
+
+  refreshEditor () {
+    this.refs.editor.refresh()
   }
 
   getClassName () {

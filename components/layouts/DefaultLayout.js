@@ -4,12 +4,16 @@ import styled from 'styled-components'
 import TopNav from '../TopNav'
 import Footer from '../Footer'
 import { largeBreakpoint } from '../../lib/styles/media'
+import globalStyle from '../../lib/styles/global'
 
 const Main = styled.main`
-  wposition: relative;
+  position: relative;
   width: 100%;
   max-width: ${largeBreakpoint}em;
   margin: 0 auto;
+`
+const Root = styled.div`
+  ${globalStyle}
 `
 
 export default class DefaultLayout extends React.Component {
@@ -17,7 +21,7 @@ export default class DefaultLayout extends React.Component {
     const { title, description, keywords, author, children } = this.props
 
     return (
-      <div>
+      <Root>
         <Head>
           <title>{title == null ? 'Carbon Stack' : title}</title>
 
@@ -30,7 +34,7 @@ export default class DefaultLayout extends React.Component {
           {children}
         </Main>
         <Footer />
-      </div>
+      </Root>
     )
   }
 }
