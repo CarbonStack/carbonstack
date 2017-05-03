@@ -83,6 +83,8 @@ class TopNav extends React.PureComponent {
   }
 
   render () {
+    const { route } = this.props
+
     return <Nav>
       <div className='left'>
         <h1 className='Logo'>
@@ -96,9 +98,11 @@ class TopNav extends React.PureComponent {
         <div className='nouveau'>
           <Link href={{
             pathname: '/nouveau',
-            query: {
-              rv: null
-            }
+            query: route.query.rvUniqueName != null
+              ? {
+                rv: route.query.rvUniqueName
+              }
+              : null
           }}><a>Write an issue</a></Link>
         </div>
         {this.props.session.user == null ||
@@ -115,9 +119,10 @@ class TopNav extends React.PureComponent {
   }
 }
 
-const mapStateToProps = ({session}) => {
+const mapStateToProps = ({session, route}) => {
   return {
-    session
+    session,
+    route
   }
 }
 

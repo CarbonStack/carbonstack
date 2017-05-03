@@ -1,7 +1,7 @@
 import React from 'react'
 import DefaultLayout from '../components/layouts/DefaultLayout'
 import styled from 'styled-components'
-import Link from 'next/link'
+import Router from 'next/router'
 import { connect } from 'react-redux'
 import api from '../lib/api'
 import withBootstrap from '../lib/hocs/withBootstrap'
@@ -75,7 +75,7 @@ class Nouveau extends React.Component {
       issue: {
         title: '',
         content: '',
-        rv: 'carbonstack'
+        rv: getRvIdByUniqueName(props.rvs, 'carbonstack')
       }
     }
   }
@@ -85,6 +85,20 @@ class Nouveau extends React.Component {
 
     actions.resetPage()
     this.refs.title.focus()
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const { route, rvs } = nextProps
+    const previousRoute = this.props.route
+    if (previousRoute.query !== route.query && route.query.rv != null) {
+      const rvId = getRvIdByUniqueName(rvs, route.query.rv)
+      this.setState({
+        issue: {
+          ...this.state.issue,
+          rv: rvId
+        }
+      })
+    }
   }
 
   onIssueChange () {
@@ -183,9 +197,10 @@ class Nouveau extends React.Component {
   }
 }
 
-const mapStateToProps = ({nouveau}) => {
+const mapStateToProps = ({ nouveau, route }) => {
   return {
-    nouveau
+    nouveau,
+    route
   }
 }
 
@@ -201,6 +216,15 @@ function getRvUniqueNameById (rvs, rvId) {
   for (let rv of rvs) {
     if (rv._id === rvId) {
       return rv.uniqueName
+    }
+  }
+  return null
+}
+
+function getRvIdByUniqueName (rvs, rvUniqueName) {
+  for (let rv of rvs) {
+    if (rv.uniqueName === rvUniqueName) {
+      return rv._id
     }
   }
   return null
