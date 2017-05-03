@@ -9,7 +9,7 @@ class CodeEditor extends React.PureComponent {
   componentDidMount () {
     const { CodeMirror } = window
     CodeMirror.modeURL = '/static/assets/vendor/codeMirror-5.25.2/mode/%N/%N.js'
-    const { value, mode } = this.props
+    const { value, mode, placeholder = '' } = this.props
     this.value = value
     this.codeMirror = CodeMirror.fromTextArea(this.editor, {
       lineNumbers: true,
@@ -22,6 +22,7 @@ class CodeEditor extends React.PureComponent {
       keyMap: 'sublime',
       inputStyle: 'textarea',
       indentWithTabs: false,
+      placeholder,
       extraKeys: {
         Tab: function (cm) {
           if (cm.somethingSelected()) cm.indentSelection('add')
@@ -42,12 +43,7 @@ class CodeEditor extends React.PureComponent {
 
     this.setSyntaxMode(mode || 'GitHub Flavored Markdown')
 
-    // this.codeMirror.on('blur', this.handleBlur)
     this.codeMirror.on('change', this.onCodeMirrorChange)
-    // this.codeMirror.on('keyHandled', this.handleKeyHandled)
-    // this.codeMirror.on('scroll', this.handleScroll)
-
-    // docMap = docMap.set(docKey, this.codeMirror.getDoc())
   }
 
   onCodeMirrorChange () {
@@ -83,13 +79,13 @@ class CodeEditor extends React.PureComponent {
   }
 
   render () {
-    const { value, className, placeholder = '', textAreaStyle } = this.props
+    const { value, className, textAreaStyle } = this.props
 
     return <textarea
       value={value}
       readOnly
       style={textAreaStyle}
-      placeholder={placeholder}
+      placeholder='Loading editor...'
       className={className}
       ref={editor => (this.editor = editor)}
     />

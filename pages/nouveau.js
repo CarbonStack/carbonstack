@@ -14,7 +14,10 @@ import actions, {
   ERROR
 } from '../lib/redux/modules/nouveau/actions'
 import media from '../lib/styles/media'
-import { monospacedFontFamily } from '../lib/styles/variables'
+import {
+  monospacedFontFamily,
+  errorColor
+} from '../lib/styles/variables'
 import MarkdownEditor from '../components/shared/MarkdownEditor'
 
 const Root = styled.div`
@@ -44,6 +47,9 @@ const Root = styled.div`
   &>.control {
     margin: 0.25em 0;
     text-align: right;
+    .error {
+      color: ${errorColor};
+    }
     button {
       margin-left: 5px;
       padding: 10px 25px;
@@ -72,6 +78,9 @@ class Nouveau extends React.Component {
   }
 
   componentDidMount () {
+    const { actions } = this.props
+
+    actions.resetPage()
     this.refs.title.focus()
   }
 
@@ -87,10 +96,11 @@ class Nouveau extends React.Component {
   }
 
   onSubmitButtonClick () {
-    const { actions } = this.props
+    const { actions, rvs } = this.props
     const { issue } = this.state
 
-    actions.requestCreateIssue(issue)
+    const rvUniqueName = getRvUniqueNameById(rvs, issue.rv)
+    actions.requestCreateIssue(issue, rvUniqueName)
   }
 
   render () {
@@ -141,17 +151,22 @@ class Nouveau extends React.Component {
           </div>
 
           <div className='control'>
+            <span className='error'>
+              {nouveau.error != null && nouveau.error.data.message}
+            </span>
             <button>Cancel</button>
-            {nouveau.status === WORKING
-              ? <button
-                disabled
-              >Submitting...</button>
-              : nouveau.status === ERROR
-              ? <button>Error</button>
-              : <button className='primary'
-                onClick={::this.onSubmitButtonClick}
-              >Submit</button>
-            }
+            <button
+              className='primary'
+              disabled={nouveau.status === WORKING}
+              onClick={::this.onSubmitButtonClick}
+            >
+              {nouveau.status === WORKING
+                ? 'Submitting...'
+                : nouveau.status === ERROR
+                ? 'Retry'
+                : 'Submit'
+              }
+            </button>
           </div>
         </Root>
       </DefaultLayout>
@@ -172,3 +187,12 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default withBootstrap(connect(mapStateToProps, mapDispatchToProps)(Nouveau))
+
+function getRvUniqueNameById (rvs, rvId) {
+  for (let rv of rvs) {
+    if (rv._id === rvId) {
+      return rv.uniqueName
+    }
+  }
+  return null
+}

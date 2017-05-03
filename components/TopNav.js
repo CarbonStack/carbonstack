@@ -43,8 +43,12 @@ const Nav = styled.nav`
     line-height: 60px;
     height: 60px;
     margin: 0;
+    .control {
+      margin: 0 5px;
+    }
     .profile {
       padding: 0 5px;
+      margin: 0 5px;
     }
     .profileImage {
       border-radius: 22.5px;
@@ -80,7 +84,14 @@ class TopNav extends React.PureComponent {
       </div>
 
       <div className='right'>
-        <div className='control'><Link href='/nouveau'><a>Write an issue</a></Link></div>
+        <div className='control'>
+          <Link href={{
+            pathname: '/nouveau',
+            query: {
+              rv: null
+            }
+          }}><a>Write an issue</a></Link>
+        </div>
         {this.props.session.user == null ||
           <Profile user={this.props.session.user} />
         }
