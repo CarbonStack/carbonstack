@@ -5,7 +5,7 @@ const GitHubStrategy = require('passport-github').Strategy
 const githubInfo = {
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
-  callbackURL: 'http://localhost:3000/auth/github/callback',
+  callbackURL: process.env.BASE_URL + '/auth/github/callback',
   scope: 'user:email'
 }
 
