@@ -12,6 +12,8 @@ async function rvRoute (req, res, next) {
     .find({
       rv: rv._id
     })
+    .sort({number: -1})
+    .populate('writer')
 
   res.json({
     rv,

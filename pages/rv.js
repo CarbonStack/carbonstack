@@ -1,17 +1,24 @@
 import React from 'react'
 import DefaultLayout from '../components/layouts/DefaultLayout'
 import styled from 'styled-components'
-import Link from 'next/link'
 import withBootstrap from '../lib/hocs/withBootstrap'
-import { connect } from 'react-redux'
+import media from '../lib/styles/media'
 import api from '../lib/api'
 import IssueList from '../components/rv/IssueList'
+
+const Root = styled.div`
+  width: 80%;
+  margin: 0 auto;
+  padding: 0 15px;
+  ${media.small`
+    width: 100%;
+  `}
+`
 
 class RvPage extends React.Component {
   static async getInitialProps (ctx) {
     const { query } = ctx
     const { rv, issues } = await api.pages.rv(query.rvUniqueName, ctx)
-    console.log(query, rv)
 
     return {
       rv,
@@ -23,9 +30,13 @@ class RvPage extends React.Component {
     const { rv, issues } = this.props
     return (
       <DefaultLayout title='Carbon Stack'>
-        <h1>RV: {rv.name} <small>@{rv.uniqueName}</small></h1>
-        <IssueList issues={issues} />
-
+        <Root>
+          <h1>RV: {rv.name} <small>@{rv.uniqueName}</small></h1>
+          <IssueList
+            issues={issues}
+            rv={rv}
+          />
+        </Root>
       </DefaultLayout>
     )
   }

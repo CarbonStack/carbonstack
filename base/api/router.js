@@ -22,6 +22,6 @@ router.get('/pages/rv/:rvUniqueName/issues/:issueNumber', asyncWrap(pages.issue)
 
 router.get('/rendezvous', rendezvous.index)
 
-router.post('/issues', issues.create)
+router.post('/issues', asyncWrap(issues.create))
 
 module.exports = router

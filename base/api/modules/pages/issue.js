@@ -9,10 +9,8 @@ async function issueRoute (req, res, next) {
   if (rv == null) throw new NotFound()
 
   const issue = await Issue
-    .findOne({
-      rv: rv._id,
-      number: req.params.issueNumber
-    })
+    .findById(rv.issueMap[req.params.issueNumber])
+    .populate('writer')
   if (issue == null) throw new NotFound()
 
   const latestCommit = await IssueCommit

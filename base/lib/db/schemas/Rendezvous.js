@@ -3,6 +3,7 @@ const { Schema } = require('mongoose')
 const Rendezvous = new Schema({
   uniqueName: {
     type: String,
+    unique: true,
     required: true
   },
   language: {
@@ -16,8 +17,14 @@ const Rendezvous = new Schema({
   description: {
     type: String
   },
-  issueCount: {
+  issueMap: {
+    type: Schema.Types.Mixed,
+    default: {}
+  },
+  latestIssueNumber: {
     type: Number,
+    get: v => Math.round(v),
+    set: v => Math.round(v),
     default: 0
   }
 })

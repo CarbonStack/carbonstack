@@ -7,8 +7,10 @@ const Issue = new Schema({
   },
   latestCommit: {
     type: Schema.Types.ObjectId,
-    ref: 'IssueCommit',
-    required: true
+    ref: 'IssueCommit'
+  },
+  summary: {
+    type: String
   },
   writer: {
     type: Schema.Types.ObjectId,
