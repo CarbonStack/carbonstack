@@ -26,10 +26,16 @@ const Root = styled.div`
   `}
   &>.rvSelect {
     margin-bottom: 0.5em;
+    label {
+      font-family: ${monospacedFontFamily};
+    }
     select {
       vertial-align: middle;
       font-size: 1.2em;
       padding: 10px 20px;
+      width: 175px;
+      height: 30px;
+      margin-left: 5px;
       font-family: ${monospacedFontFamily};
     }
   }
@@ -147,7 +153,6 @@ class Nouveau extends React.Component {
                 </option>
               })}
             </select>
-            <label htmlFor='rv'> rendezvous point</label>
           </div>
 
           <div className='title'>

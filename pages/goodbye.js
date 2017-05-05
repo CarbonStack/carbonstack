@@ -28,7 +28,7 @@ const Main = styled.div`
 class GoodBye extends React.Component {
   render () {
     return (
-      <DefaultLayout title='Carbon Stack'>
+      <DefaultLayout title='Good Bye! 👋 - Carbon Stack'>
         <Main>
           <h1>Good Bye! 👋</h1>
           <p className='description'>I hope you can come back soon!!</p>

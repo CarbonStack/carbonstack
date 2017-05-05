@@ -39,7 +39,7 @@ class RvPage extends React.Component {
   render () {
     const { rv, issues } = this.props
     return (
-      <DefaultLayout title='Carbon Stack'>
+      <DefaultLayout title={`RV: ${rv.name} - Carbon Stack`}>
         <Root>
           <h1>{rv.name} <small>@{rv.uniqueName}</small></h1>
           <p className='description'>{rv.description}</p>

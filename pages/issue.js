@@ -1,5 +1,4 @@
 import React from 'react'
-import Head from 'next/head'
 import DefaultLayout from '../components/layouts/DefaultLayout'
 import withBootstrap from '../lib/hocs/withBootstrap'
 import styled from 'styled-components'
@@ -60,10 +59,7 @@ class IssuePage extends React.Component {
   render () {
     const { issue, latestCommit, query } = this.props
     return (
-      <DefaultLayout title={issue.title}>
-        <Head>
-          <title>{issue.title} - @{issue.writer.githubName}</title>
-        </Head>
+      <DefaultLayout title={`${issue.title} by ${issue.writer.githubName} - Carbon Stack`}>
         <Root>
           <div className='meta'>
             <div className='left'>
