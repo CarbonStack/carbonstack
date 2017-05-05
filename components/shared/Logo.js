@@ -3,7 +3,6 @@ const color = '#626262'
 const Logo = (props) => {
   const { size, monochrom } = props
 
-
   const outerCoors = getHexagonCoor(200)
   const innerCoors = getHexagonCoor(170)
 

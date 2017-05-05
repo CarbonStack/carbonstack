@@ -5,6 +5,10 @@ import withBootstrap from '../lib/hocs/withBootstrap'
 import media from '../lib/styles/media'
 import api from '../lib/api'
 import IssueList from '../components/rv/IssueList'
+import {
+  monospacedFontFamily,
+  grayColor
+} from '../lib/styles/variables'
 
 const Root = styled.div`
   width: 80%;
@@ -13,6 +17,12 @@ const Root = styled.div`
   ${media.small`
     width: 100%;
   `}
+  &>p.description {
+    color: ${grayColor};
+    font-family: ${monospacedFontFamily};
+    font-size: 1em;
+    padding: 0 10px;
+  }
 `
 
 class RvPage extends React.Component {
@@ -31,7 +41,8 @@ class RvPage extends React.Component {
     return (
       <DefaultLayout title='Carbon Stack'>
         <Root>
-          <h1>RV: {rv.name} <small>@{rv.uniqueName}</small></h1>
+          <h1>{rv.name} <small>@{rv.uniqueName}</small></h1>
+          <p className='description'>{rv.description}</p>
           <IssueList
             issues={issues}
             rv={rv}

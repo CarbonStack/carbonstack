@@ -12,7 +12,7 @@ const List = styled.ul`
   list-style: none;
   &>li {
     border-bottom: 1px solid ${borderColor};
-    padding: 10px 15px;
+    padding: 10px 15px 5px;
     .meta {
       color: ${grayColor};
       font-family: ${monospacedFontFamily};
@@ -39,6 +39,18 @@ const List = styled.ul`
         margin-left: 15px;
         color: ${grayColor};
       }
+    }
+    &.empty {
+      color: ${grayColor};
+      font-family: ${monospacedFontFamily};
+      border: none;
+      margin: 45px 15px;
+      font-size: 1.2em;
+      text-align: center;
+      line-height: 250%;
+    }
+    &:last-child {
+      border-bottom: none;
     }
   }
 `
@@ -72,7 +84,7 @@ class IssueList extends React.PureComponent {
               }}
               as={`/rv/${rv.uniqueName}/${issue.number}`}
             >
-              <a>{issue.title} <code className='summary'>{issue.summary}</code></a>
+              <a>{issue.title}<code className='summary'>{issue.summary}</code></a>
             </Link>
           </h2>
         </li>
@@ -80,6 +92,19 @@ class IssueList extends React.PureComponent {
 
     return <List>
       {issueItems}
+      {issueItems.length === 0 &&
+        <li className='empty'>
+          So boring...😪 we don't have any issue yet...<br />
+          <Link href={{
+            pathname: '/nouveau',
+            query: rv.uniqueName != null
+              ? {
+                rv: rv.uniqueName
+              }
+              : null
+          }}><a><b>Could you make one?✨</b></a></Link>
+        </li>
+      }
     </List>
   }
 }

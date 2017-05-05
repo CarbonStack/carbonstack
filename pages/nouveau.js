@@ -1,7 +1,6 @@
 import React from 'react'
 import DefaultLayout from '../components/layouts/DefaultLayout'
 import styled from 'styled-components'
-import Router from 'next/router'
 import { connect } from 'react-redux'
 import api from '../lib/api'
 import withBootstrap from '../lib/hocs/withBootstrap'
@@ -166,7 +165,7 @@ class Nouveau extends React.Component {
             <MarkdownEditor
               ref='content'
               value={issue.content}
-              placeholder='Describe the issue... (content)'
+              placeholder='Describe the issue! (content)'
               onChange={::this.onIssueChange}
             />
           </div>

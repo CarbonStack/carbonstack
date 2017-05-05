@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import media, { largeBreakpoint } from '../lib/styles/media'
 import { monospacedFontFamily } from '../lib/styles/variables'
 
-
 const Root = styled.footer`
   height: 60px;
   display: flex;

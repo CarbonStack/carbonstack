@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 import {
   actions as sessionActions
 } from '../lib/redux/modules/session'
-import { largeBreakpoint } from '../lib/styles/media'
+import media, { largeBreakpoint } from '../lib/styles/media'
 import { monospacedFontFamily, textColor } from '../lib/styles/variables'
 
 const Nav = styled.nav`
@@ -16,7 +16,11 @@ const Nav = styled.nav`
   max-width: ${largeBreakpoint}em;
   margin: 0 auto 10px;
   font-family: ${monospacedFontFamily};
-
+  ${media.small`
+    .hiddenSmall {
+      display: none;
+    }
+  `}
   .left {
     flex: 1;
     line-height: 60px;
@@ -103,14 +107,14 @@ class TopNav extends React.PureComponent {
                 rv: route.query.rvUniqueName
               }
               : null
-          }}><a>Write an issue</a></Link>
+          }}><a>✏️ Write<span className='hiddenSmall'> an issue</span></a></Link>
         </div>
         {this.props.session.user == null ||
           <Profile user={this.props.session.user} />
         }
         <div className='signin'>
           {this.props.session.user == null
-            ? <button onClick={::this.onSignInViaGithubButtonClick}>Sign in via Github</button>
+            ? <button onClick={::this.onSignInViaGithubButtonClick}>🔌 Sign in<span className='hiddenSmall'> via Github</span></button>
             : <button onClick={::this.onSignOutButtonClick}>Sign Out</button>
           }
         </div>

@@ -7,7 +7,10 @@ import withBootstrap from '../lib/hocs/withBootstrap'
 import media from '../lib/styles/media'
 import api from '../lib/api'
 import LanguageEmoji from '../components/shared/LanguageEmoji'
-import { monospacedFontFamily } from '../lib/styles/variables'
+import {
+  monospacedFontFamily,
+  grayColor
+} from '../lib/styles/variables'
 
 const Main = styled.div`
   width: 80%;
@@ -36,9 +39,13 @@ const Main = styled.div`
       h3, p {
         margin: 0 0 0.5em;
       }
+      .description {
+        color: ${grayColor};
+        font-family: ${monospacedFontFamily};
+      }
     }
     .rvList-hint {
-      font-size: 1em;
+      font-family: ${monospacedFontFamily};
     }
   }
 `
@@ -59,7 +66,7 @@ class Index extends React.Component {
       <h3><Link href={`/rv?rvUniqueName=${rv.uniqueName}`} as={`/rv/${rv.uniqueName}`}>
         <a>{rv.name} <LanguageEmoji lang={rv.language} /> <small><code>/rv/{rv.uniqueName}</code></small></a>
       </Link></h3>
-      <p>{rv.description}</p>
+      <p className='description'>{rv.description}</p>
     </li>)
 
     return (
