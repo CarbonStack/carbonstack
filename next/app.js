@@ -12,7 +12,6 @@ const next = require('next')
 
 const app = next({ dev })
 const handle = app.getRequestHandler()
-const proxy = require('http-proxy-middleware')
 const logger = require('morgan')
 
 app.prepare()
@@ -24,9 +23,20 @@ app.prepare()
       : '*'
     server.use(logTarget, logger('dev'))
 
-    server.use('/api', proxy('http://127.0.0.1:3001'))
-    server.use('/auth', proxy('http://127.0.0.1:3001'))
-    server.use('/ws', proxy('http://127.0.0.1:3001'))
+    if (!dev) {
+      const rootRouter = require('../base/rootRouter')
+      server.all(/\/api|\/auth|\/ws/, (req, res, next) => {
+        req.url = req.baseUrl + req.url
+        req.path = req.baseUrl + req.path
+        req.baseUrl = '/'
+        next()
+      }, rootRouter)
+    } else {
+      const proxy = require('http-proxy-middleware')
+      server.use('/api', proxy('http://127.0.0.1:3001'))
+      server.use('/auth', proxy('http://127.0.0.1:3001'))
+      server.use('/ws', proxy('http://127.0.0.1:3001'))
+    }
 
     server.get('/rv', (req, res) => {
       return res.redirect('/')

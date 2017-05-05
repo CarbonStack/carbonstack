@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=production concurrently -c \"green,blue\" -n \"next,base\" -p \"name\" \"npm run next:serve\" \"npm run base:serve\"",
+    "start": "NODE_ENV=production node next/app.js",
     "build": "next build",
     "dev": "concurrently -c \"green,blue\" -n \"next,base\" -p \"name\" \"npm run next:dev\" \"npm run base:dev\"",
     "next:dev": "nodemon -V --watch next next/app.js",
