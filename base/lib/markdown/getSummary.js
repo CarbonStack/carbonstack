@@ -7,7 +7,7 @@ function getSummary (value) {
     if (line.trim().length > 0) {
       result.push(line)
     }
-    if (result.length > 1) {
+    if (result.length > 0) {
       break
     }
   }

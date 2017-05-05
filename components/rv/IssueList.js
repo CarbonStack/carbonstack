@@ -12,11 +12,11 @@ const List = styled.ul`
   list-style: none;
   &>li {
     border-bottom: 1px solid ${borderColor};
-    padding: 15px 15px;
+    padding: 10px 15px;
     .meta {
       color: ${grayColor};
       font-family: ${monospacedFontFamily};
-      font-size: 0.9em;
+      font-size: 0.8em;
       .writer {
         line-height: 20px;
         .photo {
@@ -27,8 +27,18 @@ const List = styled.ul`
         }
       }
     }
-    .summary {
+    h2 {
+      font-size: 1.5em;
+      margin: 5px 0;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: pre;
       color: ${grayColor};
+      .summary {
+        vertical-align: middle;
+        margin-left: 15px;
+        color: ${grayColor};
+      }
     }
   }
 `
@@ -43,14 +53,13 @@ class IssueList extends React.PureComponent {
         >
           <div className='meta'>
             <div className='writer'>
-              by&nbsp;
+              #{issue.number}: by&nbsp;
               <img
                 className='photo'
                 src={issue.writer.photos[0].value}
               />&nbsp;
               {issue.writer.githubName} {moment(issue.createdAt).fromNow()}
             </div>
-            <div>{issue.createdAt}</div>
           </div>
           <h2>
             <Link
@@ -63,12 +72,9 @@ class IssueList extends React.PureComponent {
               }}
               as={`/rv/${rv.uniqueName}/${issue.number}`}
             >
-              <a>#{issue.number}: {issue.title}</a>
+              <a>{issue.title} <code className='summary'>{issue.summary}</code></a>
             </Link>
           </h2>
-          <pre className='summary'>
-            <code>{issue.summary}</code>
-          </pre>
         </li>
       )
 
