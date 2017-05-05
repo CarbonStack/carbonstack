@@ -37,6 +37,7 @@ export default class MyDocument extends Document {
           <link rel='mask-icon' href='https://unpkg.com/@carbonstack/favicon@0.0.1/safari-pinned-tab.svg' color='#5bbad5' />
           <link rel='stylesheet' href='https://unpkg.com/@carbonstack/base-css@0.0.2/build/style.css' />
           <link rel='stylesheet' href='https://unpkg.com/codemirror@5.25.2/lib/codemirror.css' />
+          <link rel='stylesheet' type='text/css' href='https://unpkg.com/nprogress@0.2.0/nprogress.css' />
         </Head>
         <body>
           <Main />

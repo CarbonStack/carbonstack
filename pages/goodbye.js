@@ -7,6 +7,7 @@ import {
   monospacedFontFamily,
   grayColor
 } from '../lib/styles/variables'
+import Router from 'next/router'
 
 const Main = styled.div`
   width: 80%;
@@ -26,6 +27,13 @@ const Main = styled.div`
   }
 `
 class GoodBye extends React.Component {
+  static async getInitialProps (ctx) {
+    if (ctx.res) {
+      ctx.res.writeHead(302, { Location: '/' })
+      ctx.res.end()
+    }
+  }
+
   render () {
     return (
       <DefaultLayout title='Good Bye! 👋 - Carbon Stack'>
