@@ -7,7 +7,6 @@ import {
   monospacedFontFamily,
   grayColor
 } from '../lib/styles/variables'
-import Router from 'next/router'
 
 const Main = styled.div`
   width: 80%;

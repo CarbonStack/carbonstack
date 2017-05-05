@@ -1,0 +1,5 @@
+{
+  "name": "carbonstack",
+  "dotenv": ".env.production",
+  "alias": "carbonstack.io"
+}
