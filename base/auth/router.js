@@ -39,7 +39,7 @@ function storeIfQueryHasRedirectTo (req) {
 function redirectToOrigin (req, res) {
   const redirectTo = typeof req.session.redirectTo === 'string'
     ? req.session.redirectTo
-    : process.env.BASE_URL
+    : '/'
   req.session.redirectTo = null
   req.session.save(() => {
     res.redirect(redirectTo)
