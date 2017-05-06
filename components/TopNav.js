@@ -10,6 +10,12 @@ import media, { largeBreakpoint } from '../lib/styles/media'
 import { monospacedFontFamily, textColor } from '../lib/styles/variables'
 
 const Nav = styled.nav`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: rgba(255,255,255,0.8);
   height: 60px;
   display: flex;
   width: 100%;

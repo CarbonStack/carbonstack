@@ -14,6 +14,7 @@ const Main = styled.main`
 `
 const Root = styled.div`
   ${globalStyle}
+  margin-top: 60px;
 `
 
 export default class DefaultLayout extends React.Component {
