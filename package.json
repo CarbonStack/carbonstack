@@ -4,8 +4,6 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=production node next/app.js",
-    "postinstall": "npm run link-local-modules",
-    "link-local-modules": "node scripts/linkDirs",
     "build": "next build",
     "dev": "concurrently -c \"green,blue\" -n \"next,base\" -p \"name\" \"npm run next:dev\" \"npm run base:dev\"",
     "next:dev": "nodemon -V --watch next next/app.js",
