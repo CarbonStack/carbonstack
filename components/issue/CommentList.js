@@ -10,7 +10,7 @@ import {
 import CommentForm from './CommentForm'
 
 const Root = styled.div`
-  ul {
+  &>ul.list {
     list-style: none;
     font-family: ${monospacedFontFamily};
     &>li.item {
@@ -31,7 +31,10 @@ const Root = styled.div`
         }
       }
       &>.content {
-        margin: 15px 15px 0;
+        margin: 0 15px;
+        ul {
+          list-style: initial;
+        }
       }
     }
     &>li.empty {
@@ -47,6 +50,7 @@ const Root = styled.div`
     font-family: ${monospacedFontFamily};
     color: ${grayColor};
     text-align: center;
+    margin: 35px 0;
   }
 `
 
@@ -89,7 +93,7 @@ class CommentList extends React.PureComponent {
     } = this.props
 
     return <Root>
-      <ul>
+      <ul className='list'>
         {comments.map(CommentItem)}
         {comments.length === 0 &&
           <li className='empty'>Not commented yet.</li>
