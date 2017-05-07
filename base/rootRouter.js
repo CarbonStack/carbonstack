@@ -23,10 +23,7 @@ router.use(session({
 }))
 router.use(passport.initialize())
 router.use(passport.session())
-router.use((req, res, next) => {
-  console.log(req.path, req.originalUrl)
-  next()
-})
+
 router.use('/api', require('./api/router'))
 router.use('/auth', require('./auth/router'))
 

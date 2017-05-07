@@ -40,7 +40,7 @@ class LoginPage extends React.Component {
     return (
       <DefaultLayout title='Log In - Carbon Stack'>
         <Main>
-          <h1>You have to sign in!</h1>
+          <h1>You have to sign in to access this page!</h1>
         </Main>
       </DefaultLayout>
     )

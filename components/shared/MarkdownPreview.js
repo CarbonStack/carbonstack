@@ -60,7 +60,8 @@ class MarkdownPreview extends React.PureComponent {
   }
 
   render () {
-    return <Root className='markdown-body'>
+    const { className = '' } = this.props
+    return <Root className={'markdown-body ' + className}>
       {(this.state.rendered == null || this.state.rendered.props.children == null) &&
         <Empty>Empty Content</Empty>
       }

@@ -5,9 +5,6 @@ const IssueCommit = new Schema({
     type: String,
     default: ''
   },
-  message: {
-    type: String
-  },
   writer: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -17,7 +14,7 @@ const IssueCommit = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'IssueCommit'
   },
-  creatdAt: {
+  createdAt: {
     type: Date,
     default: Date.now
   }

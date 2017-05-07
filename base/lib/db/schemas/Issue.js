@@ -31,13 +31,20 @@ const Issue = new Schema({
     ref: 'Rendezvous',
     required: true
   },
-  creatdAt: {
+  createdAt: {
     type: Date,
     default: Date.now
   },
   updatedAt: {
     type: Date,
     default: Date.now
+  },
+  comments: {
+    type: [{
+      type: Schema.Types.ObjectId,
+      ref: 'IssueComment'
+    }],
+    default: []
   }
 })
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import DefaultLayout from '../components/layouts/DefaultLayout'
 import withBootstrap from '../lib/hocs/withBootstrap'
 import styled from 'styled-components'
@@ -12,6 +13,7 @@ import {
 import api from '../lib/api'
 import MarkdownPreview from '../components/shared/MarkdownPreview'
 import moment from 'moment'
+import CommentListContainer from '../components/issue/CommentListContainer'
 
 const Root = styled.div`
   width: 80%;
@@ -43,21 +45,40 @@ const Root = styled.div`
     border-bottom: 1px solid ${borderColor};
     margin-bottom: 15px;
   }
+  &>.comments {
+    margin: 35px auto;
+    padding: 35px 0 0;
+    border-top: 1px solid ${borderColor};
+  }
 `
 class IssuePage extends React.Component {
   static async getInitialProps (ctx) {
     const { query } = ctx
-    const { issue, latestCommit } = await api.pages.issue(query.rvUniqueName, query.issueNumber, ctx)
+    const { issue } = await api.pages.issue(query.rvUniqueName, query.issueNumber, ctx)
 
     return {
       issue,
-      latestCommit,
       query
     }
   }
 
+  constructor () {
+    super()
+
+    this.state = {
+      newComment: {
+        content: ''
+      }
+    }
+  }
+
   render () {
-    const { issue, latestCommit, query } = this.props
+    const {
+      issue,
+      query,
+      session
+    } = this.props
+
     return (
       <DefaultLayout title={`${issue.title} by ${issue.writer.githubName} - Carbon Stack`}>
         <Root>
@@ -71,14 +92,20 @@ class IssuePage extends React.Component {
                 />&nbsp;
                 {issue.writer.githubName} {moment(issue.createdAt).fromNow()}
               </div>
-              <div>{issue.createdAt}</div>
             </div>
             <div className='right'>
             </div>
           </div>
           <h1 className='title'>{issue.title}</h1>
           <div>
-            <MarkdownPreview value={latestCommit.content} />
+            <MarkdownPreview value={issue.latestCommit.content} />
+          </div>
+          <div className='comments'>
+            <h3>Comments</h3>
+            <CommentListContainer
+              user={session.user}
+              issue={issue}
+            />
           </div>
         </Root>
       </DefaultLayout>
@@ -86,4 +113,8 @@ class IssuePage extends React.Component {
   }
 }
 
-export default withBootstrap(IssuePage)
+const mapStateToProps = state => ({
+  session: state.session
+})
+
+export default withBootstrap(connect(mapStateToProps)(IssuePage))

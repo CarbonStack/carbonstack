@@ -14,6 +14,10 @@ const IssueComment = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Issue',
     required: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
 })
 

@@ -19,8 +19,7 @@ async function create (req, res) {
   const issueCommit = await IssueCommit
     .create({
       content: req.body.content,
-      writer: req.user._id,
-      message: 'Initial Commit'
+      writer: req.user._id
     })
 
   rv.latestIssueNumber += 1
