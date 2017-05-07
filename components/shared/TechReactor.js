@@ -25,7 +25,6 @@ class TechReactor extends React.PureComponent {
       if (action.type === targetAction) {
         return action
       }
-      console.log('reject')
     }
   }
 

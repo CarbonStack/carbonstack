@@ -93,8 +93,6 @@ class IssuePage extends React.Component {
                 {issue.writer.githubName} {moment(issue.createdAt).fromNow()}
               </div>
             </div>
-            <div className='right'>
-            </div>
           </div>
           <h1 className='title'>{issue.title}</h1>
           <div>

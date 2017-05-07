@@ -23,15 +23,15 @@ const status = {
 
 // Action creators
 const actions = {
-  requestCommentCreate: (data) => ({
+  requestCommentCreate: data => ({
     type: REQUEST_COMMENT_CREATE,
     payload: data
   }),
-  successCommentCreate: (data) => ({
+  successCommentCreate: data => ({
     type: SUCCESS_COMMENT_CREATE,
     payload: data
   }),
-  failureCommentCreate: (error) => ({
+  failureCommentCreate: error => ({
     type: FAILURE_COMMENT_CREATE,
     payload: error
   })
@@ -44,7 +44,8 @@ const myReducer = (state, action) => {
       comments.push(action.payload)
       return {
         ...state,
-        comments
+        comments,
+        error: null
       }
     case FAILURE_COMMENT_CREATE:
       return {
