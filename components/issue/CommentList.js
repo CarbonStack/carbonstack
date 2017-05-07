@@ -7,6 +7,7 @@ import {
   borderColor,
   grayColor
 } from '../../lib/styles/variables'
+import media from '../../lib/styles/media'
 import CommentForm from './CommentForm'
 
 const Root = styled.div`
@@ -17,6 +18,9 @@ const Root = styled.div`
       margin: 15px 15px 0;
       border: solid 1px ${borderColor};
       border-radius: 4px;
+      ${media.small`
+        margin: 15px 0 0;
+      `}
       &>.meta {
         height: 30px;
         line-height: 30px;
@@ -94,7 +98,7 @@ class CommentList extends React.PureComponent {
 
     return <Root>
       <ul className='list'>
-        {comments.map(CommentItem)}
+        {Object.values(comments).sort((a, b) => (new Date(a) - new Date(b))).map(comment => CommentItem(comment))}
         {comments.length === 0 &&
           <li className='empty'>Not commented yet.</li>
         }

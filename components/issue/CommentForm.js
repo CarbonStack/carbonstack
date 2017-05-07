@@ -7,6 +7,7 @@ import {
   monospacedFontFamily,
   errorColor
 } from '../../lib/styles/variables'
+import media from '../../lib/styles/media'
 
 const defaultState = {
   content: ''
@@ -16,6 +17,9 @@ const Root = styled.div`
   margin: 15px;
   border: 1px solid ${borderColor};
   border-radius: 4px;
+  ${media.small`
+    margin: 15px 0;
+  `}
   &>.meta {
     font-family: ${monospacedFontFamily};
     height: 30px;

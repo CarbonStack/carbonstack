@@ -99,7 +99,9 @@ class TopNav extends React.PureComponent {
       <div className='left'>
         <h1 className='Logo'>
           <Link href='/'>
-            <a><img src='https://unpkg.com/@carbonstack/favicon@0.0.1/assets/logo.svg' />Carbon Stack</a>
+            <a>
+              <img src='https://unpkg.com/@carbonstack/favicon@0.0.1/assets/logo.svg' />
+              <span className='hiddenSmall'>Carbon Stack</span></a>
           </Link>
         </h1>
       </div>

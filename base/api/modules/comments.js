@@ -1,5 +1,6 @@
 const { Issue, IssueComment } = require('../../lib/db/models')
 const { Unauthorized, Unprocessable } = require('../../lib/errors')
+const ws = require('../../ws')
 
 async function create (req, res) {
   if (req.user == null) throw new Unauthorized()
@@ -24,10 +25,16 @@ async function create (req, res) {
   issue.markModified('comments')
   await issue.save()
 
+  const normalizedIssueComment = Object.assign({}, issueComment.toJSON(), {
+    writer: req.user
+  })
+
+  ws.io.to('issue:' + issue._id).emit('issueComment:create', {
+    issueComment: normalizedIssueComment
+  })
+
   res.json({
-    issueComment: Object.assign({}, issueComment.toJSON(), {
-      writer: req.user
-    })
+    issueComment: normalizedIssueComment
   })
 }
 

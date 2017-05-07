@@ -51,6 +51,7 @@ export default class MyDocument extends Document {
           <script type='text/javascript' src='https://unpkg.com/codemirror@5.25.2/addon/runmode/runmode.js' />
           <script type='text/javascript' src='https://unpkg.com/codemirror@5.25.2/addon/edit/continuelist.js' />
           <script type='text/javascript' src='https://unpkg.com/codemirror@5.25.2/addon/display/placeholder.js' />
+          <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.4/socket.io.slim.min.js' />
 
           <NextScript />
 

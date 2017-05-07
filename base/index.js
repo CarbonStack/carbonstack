@@ -12,7 +12,10 @@ const app = express()
 
 app.use(require('./rootRouter'))
 
-app.listen(3001, (err) => {
+const ws = require('./ws')
+const server = ws.bootstrap(app)
+
+server.listen(3001, (err) => {
   if (err) throw err
   console.log('API server is on http://127.0.0.1:3001')
 })

@@ -3,6 +3,7 @@ import CommentList from './CommentList'
 import api from '../../lib/api'
 import { bindActionCreators } from 'redux'
 import TechReactor from '../shared/TechReactor'
+import socket from '../../lib/socket'
 
 const statusPrefix = 'IssueCommentContainer'
 
@@ -40,11 +41,12 @@ const actions = {
 const myReducer = (state, action) => {
   switch (action.type) {
     case SUCCESS_COMMENT_CREATE:
-      const comments = state.comments.slice()
-      comments.push(action.payload)
       return {
         ...state,
-        comments,
+        comments: {
+          ...state.comments,
+          [action.payload._id]: action.payload
+        },
         error: null
       }
     case FAILURE_COMMENT_CREATE:
@@ -70,12 +72,19 @@ const mySaga = function * () {
   }
 }
 
+function mapComments (comments) {
+  return comments.reduce((set, comment) => {
+    set[comment._id] = comment
+    return set
+  }, {})
+}
+
 class IssueCommentContainer extends TechReactor {
   constructor (props) {
     super(props)
 
     this.state = {
-      comments: props.issue.comments,
+      comments: mapComments(props.issue.comments),
       status: IDLE
     }
   }
@@ -85,9 +94,31 @@ class IssueCommentContainer extends TechReactor {
     const nextIssue = nextProps.issue
     if (currentIssue !== nextIssue) {
       this.setState({
-        issue: nextIssue
+        issue: nextIssue,
+        comments: mapComments(nextIssue.comments)
       })
     }
+  }
+
+  onIssueCommentCreate ({issueComment}) {
+    this.actions.successCommentCreate(issueComment)
+  }
+
+  componentDidMount () {
+    const { issue } = this.props
+    socket.emit('join:issue', {
+      issueId: issue._id
+    })
+    socket.on('issueComment:create', ::this.onIssueCommentCreate)
+  }
+
+  componentWillUnmount () {
+    super.componentWillUnmount()
+    const { issue } = this.props
+    socket.emit('leave:issue', {
+      issueId: issue._id
+    })
+    socket.off('issueComment:create', ::this.onIssueCommentCreate)
   }
 
   actions = bindActionCreators(actions, ::this.dispatch)
