@@ -50,6 +50,11 @@ const Root = styled.div`
     border-radius: 0;
     border-width: 0 0 1px;
   }
+  &>.content {
+    .CodeMirror {
+      height: 450px;
+    }
+  }
   &>.control {
     margin: 0.25em 0;
     text-align: right;
@@ -166,7 +171,7 @@ class Nouveau extends React.Component {
             />
           </div>
 
-          <div className='form-section'>
+          <div className='content'>
             <MarkdownEditor
               ref='content'
               value={issue.content}

@@ -58,6 +58,7 @@ class CodeEditor extends React.PureComponent {
       this.codeMirror.off('change', this.onCodeMirrorChange)
       this.codeMirror.setValue(value)
       this.value = value
+      this.codeMirror.on('change', this.onCodeMirrorChange)
     }
   }
 

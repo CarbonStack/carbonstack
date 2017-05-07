@@ -30,11 +30,6 @@ const Root = styled.div`
     border-bottom: 1px solid ${borderColor};
   }
   &.editor {
-    .panel:first-child {
-      .CodeMirror {
-        height: 500px;
-      }
-    }
     .panel:last-child {
       display: none;
     }
@@ -46,6 +41,7 @@ const Root = styled.div`
   }
   &.split {
     position: fixed;
+    z-index: 100;
     top: 0;
     left: 0;
     right: 0;
