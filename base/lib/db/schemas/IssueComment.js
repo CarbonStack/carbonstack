@@ -15,6 +15,12 @@ const IssueComment = new Schema({
     ref: 'Issue',
     required: true
   },
+  number: {
+    type: Number,
+    get: v => Math.round(v),
+    set: v => Math.round(v),
+    required: true
+  },
   createdAt: {
     type: Date,
     default: Date.now

@@ -54,10 +54,14 @@ const Root = styled.div`
 class IssuePage extends React.Component {
   static async getInitialProps (ctx) {
     const { query } = ctx
-    const { issue } = await api.pages.issue(query.rvUniqueName, query.issueNumber, ctx)
+    const {
+      issue,
+      comments
+    } = await api.pages.issue(query.rvUniqueName, query.issueNumber, ctx)
 
     return {
       issue,
+      comments,
       query
     }
   }
@@ -75,6 +79,7 @@ class IssuePage extends React.Component {
   render () {
     const {
       issue,
+      comments,
       query,
       session
     } = this.props
@@ -103,6 +108,7 @@ class IssuePage extends React.Component {
             <CommentListContainer
               user={session.user}
               issue={issue}
+              comments={comments}
             />
           </div>
         </Root>

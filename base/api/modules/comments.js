@@ -14,15 +14,17 @@ async function create (req, res) {
     .findById(req.body.issue)
   if (issue == null) throw new Unprocessable('Invalid issue ID.')
 
+  issue.latestCommentNumber += 1
   const issueComment = await IssueComment
     .create({
       content: req.body.content,
       writer: req.user._id,
-      issue: issue._id
+      issue: issue._id,
+      number: issue.latestCommentNumber
     })
 
-  issue.comments.push(issueComment._id)
-  issue.markModified('comments')
+  issue.commentMap[issue.latestCommentNumber] = issueComment._id
+  issue.markModified('commentMap')
   await issue.save()
 
   const normalizedIssueComment = Object.assign({}, issueComment.toJSON(), {

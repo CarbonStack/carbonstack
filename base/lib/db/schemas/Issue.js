@@ -39,12 +39,15 @@ const Issue = new Schema({
     type: Date,
     default: Date.now
   },
-  comments: {
-    type: [{
-      type: Schema.Types.ObjectId,
-      ref: 'IssueComment'
-    }],
-    default: []
+  commentMap: {
+    type: Schema.Types.Mixed,
+    default: {}
+  },
+  latestCommentNumber: {
+    type: Number,
+    get: v => Math.round(v),
+    set: v => Math.round(v),
+    default: 0
   }
 })
 

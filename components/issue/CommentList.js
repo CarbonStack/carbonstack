@@ -64,7 +64,7 @@ const CommentItem = comment => (
     key={comment._id}
   >
     <div className='meta'>
-      by&nbsp;
+      #{comment.number} by&nbsp;
       <img
         className='photo'
         src={comment.writer.photos[0].value}

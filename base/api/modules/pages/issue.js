@@ -1,4 +1,4 @@
-const { Rendezvous, Issue } = require('../../../lib/db/models')
+const { Rendezvous, Issue, IssueComment } = require('../../../lib/db/models')
 const { NotFound } = require('../../../lib/errors')
 
 async function issueRoute (req, res, next) {
@@ -12,16 +12,26 @@ async function issueRoute (req, res, next) {
     .findById(rv.issueMap[req.params.issueNumber])
     .populate('writer')
     .populate('latestCommit')
-    .populate({
-      path: 'comments',
-      populate: {
-        path: 'writer'
-      }
-    })
+
   if (issue == null) throw new NotFound()
 
+  const commentIds = [...new Array(100)].reduce((ids, v, i) => {
+    const commentNumber = issue.latestCommentNumber - i
+    if (commentNumber > 0) ids.push(issue.commentMap[commentNumber])
+    return ids
+  }, [])
+
+  const comments = await IssueComment
+    .find({
+      _id: {
+        $in: commentIds
+      }
+    })
+    .populate('writer')
+
   res.json({
-    issue
+    issue,
+    comments
   })
 }
 

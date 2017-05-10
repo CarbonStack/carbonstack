@@ -84,7 +84,7 @@ class IssueCommentContainer extends TechReactor {
     super(props)
 
     this.state = {
-      comments: mapComments(props.issue.comments),
+      comments: mapComments(props.comments),
       status: IDLE
     }
   }
@@ -95,7 +95,7 @@ class IssueCommentContainer extends TechReactor {
     if (currentIssue !== nextIssue) {
       this.setState({
         issue: nextIssue,
-        comments: mapComments(nextIssue.comments)
+        comments: mapComments(nextProps.comments)
       })
     }
   }
