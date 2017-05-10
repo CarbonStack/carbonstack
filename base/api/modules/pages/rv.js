@@ -8,9 +8,18 @@ async function rvRoute (req, res, next) {
     })
   if (rv == null) throw new NotFound()
 
+  // Make Ids array from issueMap
+  const issueIds = [...new Array(100)]
+    .reduce((ids, v, i) => {
+      const issueNumber = rv.latestIssueNumber - i
+      if (issueNumber > 0) ids.push(rv.issueMap[issueNumber])
+      return ids
+    }, [])
   const issues = await Issue
     .find({
-      rv: rv._id
+      _id: {
+        $in: issueIds
+      }
     })
     .sort({number: -1})
     .populate('writer')
