@@ -26,9 +26,9 @@ const Issue = new Schema({
     get: v => Math.round(v),
     set: v => Math.round(v)
   },
-  rv: {
+  group: {
     type: Schema.Types.ObjectId,
-    ref: 'Rendezvous',
+    ref: 'Group',
     required: true
   },
   createdAt: {

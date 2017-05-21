@@ -2,7 +2,6 @@ import React from 'react'
 import DefaultLayout from '../components/layouts/DefaultLayout'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import api from '../lib/api'
 import withBootstrap from '../lib/hocs/withBootstrap'
 import { bindActionCreators } from 'redux'
 import actions, {
@@ -71,13 +70,6 @@ const Root = styled.div`
 `
 
 class Nouveau extends React.Component {
-  static async getInitialProps (ctx) {
-    const { rvs } = await api.pages.nouveau(ctx)
-    return {
-      rvs
-    }
-  }
-
   constructor (props) {
     super(props)
 
@@ -111,7 +103,7 @@ class Nouveau extends React.Component {
     }
   }
 
-  onIssueChange () {
+  onIssueChange = () => {
     this.setState({
       issue: {
         ...this.state.issue,
@@ -126,7 +118,7 @@ class Nouveau extends React.Component {
     window.history.back()
   }
 
-  onSubmitButtonClick () {
+  onSubmitButtonClick = () => {
     const { actions, rvs } = this.props
     const { issue } = this.state
 
@@ -147,7 +139,7 @@ class Nouveau extends React.Component {
               id='rv'
               ref='rv'
               value={issue.rv}
-              onChange={::this.onIssueChange}
+              onChange={this.onIssueChange}
             >
               {rvs.map(rv => {
                 return <option
@@ -167,7 +159,7 @@ class Nouveau extends React.Component {
               type='text'
               value={issue.title}
               placeholder={'What\'s up? (title)'}
-              onChange={::this.onIssueChange}
+              onChange={this.onIssueChange}
             />
           </div>
 
@@ -176,7 +168,7 @@ class Nouveau extends React.Component {
               ref='content'
               value={issue.content}
               placeholder='Describe the issue! (content)'
-              onChange={::this.onIssueChange}
+              onChange={this.onIssueChange}
             />
           </div>
 
@@ -185,12 +177,12 @@ class Nouveau extends React.Component {
               {nouveau.error != null && nouveau.error.data.message}
             </span>
             <button
-              onClick={::this.onBackButtonClick}
+              onClick={this.onBackButtonClick}
             >Cancel</button>
             <button
               className='primary'
               disabled={nouveau.status === WORKING || nouveau.status === DONE}
-              onClick={::this.onSubmitButtonClick}
+              onClick={this.onSubmitButtonClick}
             >
               {nouveau.status === WORKING
                 ? 'Submitting...'

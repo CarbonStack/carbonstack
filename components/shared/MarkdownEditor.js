@@ -95,7 +95,7 @@ class MarkdownEditor extends React.PureComponent {
     this.value = value
   }
 
-  onChange () {
+  onChange = () => {
     const { onChange } = this.props
     this.value = this.refs.editor.value
     if (onChange) onChange()
@@ -106,7 +106,7 @@ class MarkdownEditor extends React.PureComponent {
     this.value = value
   }
 
-  onEditorButtonClick () {
+  onEditorButtonClick = () => {
     if (this.state.status !== EDITOR) {
       this.setState({
         status: EDITOR
@@ -117,7 +117,7 @@ class MarkdownEditor extends React.PureComponent {
     }
   }
 
-  onPreviewButtonClick () {
+  onPreviewButtonClick = () => {
     if (this.state.status !== PREVIEW) {
       this.setState({
         status: PREVIEW
@@ -125,7 +125,7 @@ class MarkdownEditor extends React.PureComponent {
     }
   }
 
-  onSplitButtonClick () {
+  onSplitButtonClick = () => {
     if (this.state.status !== SPLIT) {
       this.setState({
         status: SPLIT
@@ -160,9 +160,9 @@ class MarkdownEditor extends React.PureComponent {
     const { value, placeholder } = this.props
     return <Root className={this.getClassName()}>
       <div className='control'>
-        <button onClick={::this.onEditorButtonClick} className={this.state.status === EDITOR ? 'active' : ''}>Editor</button>
-        <button onClick={::this.onPreviewButtonClick} className={this.state.status === PREVIEW ? 'active' : ''}>Preview</button>
-        <button onClick={::this.onSplitButtonClick} className={this.state.status === SPLIT ? 'active' : ''}>2-pane</button>
+        <button onClick={this.onEditorButtonClick} className={this.state.status === EDITOR ? 'active' : ''}>Editor</button>
+        <button onClick={this.onPreviewButtonClick} className={this.state.status === PREVIEW ? 'active' : ''}>Preview</button>
+        <button onClick={this.onSplitButtonClick} className={this.state.status === SPLIT ? 'active' : ''}>2-pane</button>
       </div>
       <div className='main'>
         <div className='panel'>
@@ -170,7 +170,7 @@ class MarkdownEditor extends React.PureComponent {
             ref='editor'
             value={value}
             placeholder={placeholder}
-            onChange={::this.onChange}
+            onChange={this.onChange}
             textAreaStyle={{
               border: '1px solid ' + borderColor,
               color: placeholderColor,

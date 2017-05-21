@@ -1,20 +1,21 @@
-const { Rendezvous, Issue } = require('../../../lib/db/models')
+const { Group, Issue } = require('../../../lib/db/models')
 const { NotFound } = require('../../../lib/errors')
 
-async function rvRoute (req, res, next) {
-  const rv = await Rendezvous
+async function groupRoute (req, res, next) {
+  const group = await Group
     .findOne({
-      uniqueName: req.params.rvUniqueName
+      uniqueName: req.query.groupUniqueName
     })
-  if (rv == null) throw new NotFound()
+  if (group == null) throw new NotFound()
 
   // Make Ids array from issueMap
   const issueIds = [...new Array(100)]
     .reduce((ids, v, i) => {
-      const issueNumber = rv.latestIssueNumber - i
-      if (issueNumber > 0) ids.push(rv.issueMap[issueNumber])
+      const issueNumber = group.latestIssueNumber - i
+      if (issueNumber > 0) ids.push(group.issueMap[issueNumber])
       return ids
     }, [])
+
   const issues = await Issue
     .find({
       _id: {
@@ -25,9 +26,9 @@ async function rvRoute (req, res, next) {
     .populate('writer')
 
   res.json({
-    rv,
+    group,
     issues
   })
 }
 
-module.exports = rvRoute
+module.exports = groupRoute

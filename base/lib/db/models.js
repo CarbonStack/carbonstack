@@ -4,11 +4,13 @@ const UserSchema = require('./schemas/User')
 const IssueSchema = require('./schemas/Issue')
 const IssueCommitSchema = require('./schemas/IssueCommit')
 const IssueCommentSchema = require('./schemas/IssueComment')
-const RendezvousSchema = require('./schemas/Rendezvous')
+const GroupSchema = require('./schemas/Group')
+const GroupRoleSchema = require('./schemas/GroupRole')
 
 module.exports = {
   User: connection.model('User', UserSchema),
-  Rendezvous: connection.model('Rendezvous', RendezvousSchema),
+  Group: connection.model('Group', GroupSchema),
+  GroupRole: connection.model('GroupRole', GroupRoleSchema),
   Issue: connection.model('Issue', IssueSchema),
   IssueCommit: connection.model('IssueCommit', IssueCommitSchema),
   IssueComment: connection.model('IssueComment', IssueCommentSchema)

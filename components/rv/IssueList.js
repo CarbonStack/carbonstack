@@ -12,7 +12,7 @@ const List = styled.ul`
   list-style: none;
   &>li {
     border-bottom: 1px solid ${borderColor};
-    padding: 10px 15px 5px;
+    padding: 0 15px 5px;
     .meta {
       color: ${grayColor};
       font-family: ${monospacedFontFamily};
@@ -28,12 +28,16 @@ const List = styled.ul`
       }
     }
     h2 {
-      font-size: 1.5em;
-      margin: 5px 0;
+      font-size: 18px;
+      margin: 0;
       text-overflow: ellipsis;
       overflow: hidden;
-      white-space: pre;
+      white-space: nowrap;
       color: ${grayColor};
+      .issueNumber {
+        font-size: 0.66em;
+        margin-right: 5px;
+      }
       .summary {
         vertical-align: middle;
         margin-left: 15px;
@@ -57,15 +61,31 @@ const List = styled.ul`
 
 class IssueList extends React.PureComponent {
   render () {
-    const { issues, rv } = this.props
+    const { issues, group } = this.props
     const issueItems = issues
       .map(issue =>
         <li
           key={issue._id}
         >
+          <h2>
+            <Link
+              href={{
+                pathname: '/issue',
+                query: {
+                  groupUniqueName: group.uniqueName,
+                  issueNumber: issue.number
+                }
+              }}
+              as={`/g/${group.uniqueName}/${issue.number}`}
+            >
+              <a>
+                <span className='issueNumber'>#{issue.number}</span>
+                {issue.title}<code className='summary'>{issue.summary}</code></a>
+            </Link>
+          </h2>
           <div className='meta'>
             <div className='writer'>
-              #{issue.number}: by&nbsp;
+              by
               <img
                 className='photo'
                 src={issue.writer.photos[0].value}
@@ -73,20 +93,6 @@ class IssueList extends React.PureComponent {
               {issue.writer.githubName} {moment(issue.createdAt).fromNow()}
             </div>
           </div>
-          <h2>
-            <Link
-              href={{
-                pathname: '/issue',
-                query: {
-                  rvUniqueName: rv.uniqueName,
-                  issueNumber: issue.number
-                }
-              }}
-              as={`/rv/${rv.uniqueName}/${issue.number}`}
-            >
-              <a>{issue.title}<code className='summary'>{issue.summary}</code></a>
-            </Link>
-          </h2>
         </li>
       )
 
@@ -95,14 +101,17 @@ class IssueList extends React.PureComponent {
       {issueItems.length === 0 &&
         <li className='empty'>
           So boring...😪 we don't have any issue yet...<br />
-          <Link href={{
-            pathname: '/nouveau',
-            query: rv.uniqueName != null
-              ? {
-                rv: rv.uniqueName
-              }
-              : null
-          }}><a><b>Could you make one?✨</b></a></Link>
+          <Link
+            href={{
+              pathname: '/new',
+              query: group.uniqueName != null
+                ? {
+                  groupUniqueName: group.uniqueName
+                }
+                : null
+            }}
+            as={`/g/${group.uniqueName}/new`}
+          ><a><b>Could you make one?✨</b></a></Link>
         </li>
       }
     </List>

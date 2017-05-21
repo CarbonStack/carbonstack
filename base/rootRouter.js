@@ -26,6 +26,7 @@ router.use(passport.session())
 
 router.use('/api', require('./api/router'))
 router.use('/auth', require('./auth/router'))
+router.use('/files', require('./files/router'))
 
 router.use(function (req, res, next) {
   const err = new Error('Not Found')
@@ -34,15 +35,16 @@ router.use(function (req, res, next) {
 })
 
 // error handler
-router.use(function (err, req, res, next) {
+router.use(function (error, req, res, next) {
+  console.log(error)
   // set locals, only providing error in development
-  res.locals.message = err.message
-  res.locals.error = dev ? err : {}
+  res.locals.message = error.message
+  res.locals.error = dev ? error : {}
 
   // render the error page
-  res.status(err.status || 500)
+  res.status(error.status || 500)
   res.json({
-    message: err.message
+    message: error.message
   })
 })
 module.exports = router

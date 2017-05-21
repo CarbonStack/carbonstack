@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose')
 
-const Rendezvous = new Schema({
+const Group = new Schema({
   uniqueName: {
     type: String,
     unique: true,
@@ -26,7 +26,17 @@ const Rendezvous = new Schema({
     get: v => Math.round(v),
     set: v => Math.round(v),
     default: 0
-  }
+  },
+  photos: {
+    type: [{
+      value: String
+    }],
+    default: []
+  },
+  roles: [{
+    type: Schema.Types.ObjectId,
+    ref: 'GroupRole'
+  }]
 })
 
-module.exports = Rendezvous
+module.exports = Group

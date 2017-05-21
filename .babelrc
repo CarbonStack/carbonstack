@@ -3,10 +3,8 @@
     "next/babel",
     "stage-0"
   ],
-  "ignore": [
-    "base/**/*.js"
-  ],
   "plugins": [
-    ["transform-define", "./universalEnv.js"]
+    ["transform-define", "./universalEnv.js"],
+    "inline-react-svg"
   ]
 }

@@ -1,10 +1,10 @@
-const { Rendezvous } = require('../../../lib/db/models')
+const { Group } = require('../../../lib/db/models')
 
 async function home (req, res, next) {
-  const rvs = await Rendezvous.find({})
+  const groups = await Group.find({})
 
   res.json({
-    rvs
+    groups
   })
 }
 

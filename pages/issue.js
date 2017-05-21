@@ -27,6 +27,7 @@ const Root = styled.div`
     color: ${grayColor};
     font-family: ${monospacedFontFamily};
     font-size: 0.9em;
+    margin-bottom: 15px;
     .left {
       flex: 1;
       .writer {
@@ -37,6 +38,11 @@ const Root = styled.div`
           border-radius: 10px;
           vertical-align: middle;
         }
+      }
+    }
+    .right {
+      button: {
+        margin: 0 5px;
       }
     }
   }
@@ -87,6 +93,8 @@ class IssuePage extends React.Component {
     return (
       <DefaultLayout title={`${issue.title} by ${issue.writer.githubName} - Carbon Stack`}>
         <Root>
+          <h1 className='title'>{issue.title}</h1>
+
           <div className='meta'>
             <div className='left'>
               <div className='writer'>
@@ -98,8 +106,12 @@ class IssuePage extends React.Component {
                 {issue.writer.githubName} {moment(issue.createdAt).fromNow()}
               </div>
             </div>
+            <div className='right'>
+              <Link href={`/issue-edit?rvUniqueName=${query.rvUniqueName}&issueNumber=${issue.number}`} as={`/rv/${query.rvUniqueName}/${issue.number}/edit`}><a>Edit</a></Link>
+              <button>Upvote</button>
+            </div>
           </div>
-          <h1 className='title'>{issue.title}</h1>
+
           <div>
             <MarkdownPreview value={issue.latestCommit.content} />
           </div>

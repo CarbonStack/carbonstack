@@ -25,7 +25,7 @@ nextApp.prepare()
 
     if (!dev) {
       const rootRouter = require('../base/rootRouter')
-      expressApp.all(/\/api|\/auth/, (req, res, next) => {
+      expressApp.all(/\/api|\/auth|\/files/, (req, res, next) => {
         req.url = req.baseUrl + req.url
         req.path = req.baseUrl + req.path
         req.baseUrl = '/'
@@ -39,16 +39,23 @@ nextApp.prepare()
       const proxy = require('http-proxy-middleware')
       expressApp.use('/api', proxy('http://127.0.0.1:3001'))
       expressApp.use('/auth', proxy('http://127.0.0.1:3001'))
+      expressApp.use('/files', proxy('http://127.0.0.1:3001'))
     }
 
-    expressApp.get('/rv', (req, res) => {
+    expressApp.get('/g', (req, res) => {
       return res.redirect('/')
     })
-    expressApp.get('/rv/:rvUniqueName', (req, res) => {
-      nextApp.render(req, res, '/rv', Object.assign(req.params, req.query))
+    expressApp.get('/g/:groupUniqueName', (req, res) => {
+      nextApp.render(req, res, '/group', Object.assign(req.params, req.query))
     })
-    expressApp.get('/rv/:rvUniqueName/:issueNumber', (req, res) => {
+    expressApp.get('/g/:groupUniqueName/new', (req, res) => {
+      nextApp.render(req, res, '/new', Object.assign(req.params, req.query))
+    })
+    expressApp.get('/g/:groupUniqueName/:issueNumber', (req, res) => {
       nextApp.render(req, res, '/issue', Object.assign(req.params, req.query))
+    })
+    expressApp.get('/g/:groupUniqueName/:issueNumber/edit', (req, res) => {
+      nextApp.render(req, res, '/issue-edit', Object.assign(req.params, req.query))
     })
 
     expressApp.get('*', (req, res) => {

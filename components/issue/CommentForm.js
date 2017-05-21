@@ -48,13 +48,13 @@ class CommentForm extends React.PureComponent {
     this.state = defaultState
   }
 
-  onFormChange () {
+  onFormChange = () => {
     this.setState({
       content: this.comment.value
     })
   }
 
-  onCommentButtonClick () {
+  onCommentButtonClick = () => {
     const { actions, issue } = this.props
     actions.requestCommentCreate({
       issue: issue._id,
@@ -81,7 +81,7 @@ class CommentForm extends React.PureComponent {
         ref={comment => { this.comment = comment }}
         value={this.state.content}
         placeholder={'Let\'s leave some comment!'}
-        onChange={::this.onFormChange}
+        onChange={this.onFormChange}
       />
       <div className='control'>
         {error &&
@@ -89,7 +89,7 @@ class CommentForm extends React.PureComponent {
         }
         <button
           className='primary'
-          onClick={::this.onCommentButtonClick}
+          onClick={this.onCommentButtonClick}
         >
           Comment
         </button>

@@ -26,6 +26,13 @@ const User = new Schema({
   experience: {
     type: Number,
     default: 0
+  },
+  roles: {
+    type: [{
+      type: Schema.Types.ObjectId,
+      ref: 'GroupRole'
+    }],
+    default: []
   }
 })
 
