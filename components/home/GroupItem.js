@@ -24,7 +24,7 @@ const GroupItem = ({ group }) => (
       <h3>
         <Link href={`/group?groupUniqueName=${group.uniqueName}`} as={`/g/${group.uniqueName}`}>
           <a>
-            {group.name}
+            {group.name} <small>/g/{group.uniqueName}</small>
           </a>
         </Link>&nbsp;
         <LanguageEmoji lang={group.language} />
@@ -74,6 +74,9 @@ const GroupItem = ({ group }) => (
         margin: 0;
         height: 30px;
         line-height: 30px;
+      }
+      h3 small {
+        font-size: 0.6em;
       }
       .meta {
         color: ${placeholderColor};
