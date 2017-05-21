@@ -12,13 +12,6 @@ import {
 import Spinner from '../shared/Spinner'
 
 class NewGroupForm extends React.PureComponent {
-  constructor () {
-    super()
-    this.state = {
-      file: ''
-    }
-  }
-
   componentDidMount () {
     this.name.focus()
   }
