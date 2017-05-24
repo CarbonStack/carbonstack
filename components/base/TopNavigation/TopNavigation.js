@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 import {
   actions as sessionActions
 } from '../../../lib/redux/modules/session'
-import media, { largeBreakpoint } from '../../../lib/styles/media'
 import NewButton from './NewButton'
 import LogoLink from './LogoLink'
 import Profile from './Profile'
@@ -60,16 +59,8 @@ class TopNavigation extends React.PureComponent {
           background-color: rgba(255,255,255,0.8);
           height: 50px;
           width: 100%;
-          ${media.small(`
-            .hiddenSmall {
-              display: none;
-            }
-          `)}
         }
         .container {
-          width: 100%;
-          max-width: ${largeBreakpoint}em;
-          margin: 0 auto;
           display: flex;
         }
         .left {

@@ -1,8 +1,8 @@
 import React from 'react'
 import DefaultLayout from '../components/base/DefaultLayout'
 import withBootstrap from '../lib/hocs/withBootstrap'
-import media from '../lib/styles/media'
-import IssueList from '../components/rv/IssueList'
+import GroupAside from '../components/group/GroupAside'
+import IssueList from '../components/group/IssueList'
 import {
   monospacedFontFamily,
   grayColor
@@ -17,22 +17,24 @@ class GroupPage extends React.Component {
     } = bundle
 
     return (
-      <DefaultLayout>
-        <h1>{group.name} <small>/g/{group.uniqueName}</small></h1>
-        <p className='description'>{group.description}</p>
-        <IssueList
-          issues={issues}
-          group={group}
-        />
+      <DefaultLayout bundle={bundle}>
+        <div className='row'>
+          <div className='col-xs-12 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2'>
+            <GroupAside group={group}/>
+          </div>
+          <div className='col-xs-12 col-sm-7 col-md-6'>
+            <IssueList
+              issues={issues}
+              group={group}
+            />
+          </div>
+        </div>
         <style jsx>{`
           h1{
             small {
               font-size: 0.5em;
             }
           }
-          ${media.small`
-            width: 100%;
-          `}
           p.description {
             color: ${grayColor};
             font-family: ${monospacedFontFamily};

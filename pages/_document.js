@@ -1,3 +1,4 @@
+import React from 'react'
 import Document, {
   Head,
   Main,
@@ -17,10 +18,12 @@ export default class MyDocument extends Document {
           <meta name='viewport' content='width=device-width, initial-scale=1.0' />
           <meta name='theme-color' content='#ffffff' />
 
-          <globalStyle.ui />
-          <globalStyle.codemirror />
-          <globalStyle.markdown />
+          {Object
+            .entries(globalStyle)
+            .map(([key, value]) => React.createElement(value))
+          }
 
+          <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css' type='text/css' />
           <link rel='icon' type='image/x-icon' href='https://unpkg.com/@carbonstack/favicon@0.0.1/assets/favicon.ico' />
           <link rel='apple-touch-icon' sizes='180x180' href='https://unpkg.com/@carbonstack/favicon@0.0.1/assets/apple-touch-icon.png' />
           <link rel='icon' type='image/png' sizes='32x32' href='https://unpkg.com/@carbonstack/favicon@0.0.1/assets/favicon-32x32.png' />

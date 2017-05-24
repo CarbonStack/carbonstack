@@ -1,6 +1,5 @@
 import React from 'react'
 import Link from 'next/link'
-import media from '../../../lib/styles/media'
 import {
   textColor
 } from '../../../lib/styles/variables'
@@ -11,7 +10,7 @@ const LogoLink = props => (
     <Link href='/'>
       <a>
         <img src='https://unpkg.com/@carbonstack/favicon@0.0.1/assets/logo.svg' />
-        <span className='hiddenSmall'>Carbon Stack</span>
+        <span>Carbon Stack</span>
       </a>
     </Link>
 
@@ -29,11 +28,6 @@ const LogoLink = props => (
       img {
         vertical-align: middle;
       }
-      ${media(`
-        .hiddenSmall {
-          display: none;
-        }
-      `)}
     `}</style>
 
   </h1>

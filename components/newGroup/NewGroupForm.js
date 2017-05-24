@@ -1,8 +1,5 @@
 import React from 'react'
 import {
-  mediumBreakpoint
-} from '../../lib/styles/media'
-import {
   placeholderColor,
   errorColor
 } from '../../lib/styles/variables'
@@ -53,8 +50,7 @@ class NewGroupForm extends React.PureComponent {
     } = this.props
 
     return (
-      <div className='root'>
-
+      <div>
         <h1>Create a new group</h1>
 
         <section>
@@ -163,11 +159,6 @@ class NewGroupForm extends React.PureComponent {
         </div>
 
         <style jsx>{`
-          .root {
-            width: 100%;
-            max-width: ${mediumBreakpoint}em;
-            margin: 0 auto;
-          }
           label {
             display: block;
             width: 100%;
