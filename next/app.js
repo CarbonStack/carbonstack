@@ -49,7 +49,7 @@ nextApp.prepare()
       nextApp.render(req, res, '/group', Object.assign(req.params, req.query))
     })
     expressApp.get('/g/:groupUniqueName/new', (req, res) => {
-      nextApp.render(req, res, '/new', Object.assign(req.params, req.query))
+      nextApp.render(req, res, '/new-issue', Object.assign(req.params, req.query))
     })
     expressApp.get('/g/:groupUniqueName/:issueNumber', (req, res) => {
       nextApp.render(req, res, '/issue', Object.assign(req.params, req.query))

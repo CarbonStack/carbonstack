@@ -3,7 +3,17 @@ import Link from 'next/link'
 
 const NewButton = ({ route }) => (
   <div>
-    <Link><a>New Post</a></Link>
+    <Link
+      href={{
+        pathname: 'new-issues',
+        query: {
+          groupUniqueName: route.query.groupUniqueName
+        }
+      }}
+      as={`/g/${route.query.groupUniqueName}/new`}
+    >
+      <a>New Post</a>
+    </Link>
     <style jsx>{`
       div {
         height: 50px;
