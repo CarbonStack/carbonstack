@@ -6,8 +6,11 @@ function show (req, res, next) {
 
 function destroy (req, res, next) {
   req.logout()
-  res.json({
-    message: 'OK'
+  req.session.destroy(error => {
+    if (error != null) throw error
+    res.json({
+      message: 'OK'
+    })
   })
 }
 
