@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import MarkdownEditor from '../shared/MarkdownEditor'
 import {
   borderColor,
@@ -12,41 +11,13 @@ const defaultState = {
   content: ''
 }
 
-const Root = styled.div`
-  margin: 15px;
-  border: 1px solid ${borderColor};
-  border-radius: 4px;
-  &>.meta {
-    font-family: ${monospacedFontFamily};
-    height: 30px;
-    line-height: 30px;
-    padding: 0 15px;
-    color: ${grayColor};
-  }
-  &>.control {
-    margin: 0.25em 5px;
-    text-align: right;
-    &>.error {
-      color: ${errorColor};
-      font-family: ${monospacedFontFamily};
-      margin-right: 5px;
-    }
-  }
-  .CodeMirror {
-    height: 250px;
-  }
-
-`
-
 class CommentForm extends React.PureComponent {
-  constructor () {
-    super()
-    this.state = defaultState
-  }
-
-  onFormChange = () => {
-    this.setState({
-      content: this.comment.value
+  onChange = () => {
+    const {
+      actions
+    } = this.props
+    actions.updateCommentForm({
+      content: this.content.value
     })
   }
 
@@ -58,24 +29,24 @@ class CommentForm extends React.PureComponent {
     })
   }
 
-  reset () {
-    this.setState(defaultState)
-  }
-
   focus () {
     this.comment.focusEditor()
   }
 
   render () {
-    const { error } = this.props
+    const {
+      actions,
+      form,
+      error
+    } = this.props
 
-    return <Root>
+    return <div className='root'>
       <div className='meta'>
         New Comment&nbsp;
       </div>
       <MarkdownEditor
         ref={comment => { this.comment = comment }}
-        value={this.state.content}
+        value={form.content}
         placeholder={'Let\'s leave some comment!'}
         onChange={this.onFormChange}
       />
@@ -85,12 +56,33 @@ class CommentForm extends React.PureComponent {
         }
         <button
           className='primary'
-          onClick={this.onCommentButtonClick}
+          onClick={actions.requestCommentCreate}
         >
           Comment
         </button>
       </div>
-    </Root>
+      <style jsx>{`
+        .root {
+          margin: 15px;
+          border: 1px solid ${borderColor};
+          border-radius: 4px;
+        }
+        .meta {
+          height: 30px;
+          line-height: 30px;
+          padding: 0 15px;
+          color: ${grayColor};
+        }
+        .control {
+          margin: 0.25em 5px;
+          text-align: right;
+        }
+        .control .error {
+          color: ${errorColor};
+          margin-right: 5px;
+        }
+      `}</style>
+    </div>
   }
 }
 

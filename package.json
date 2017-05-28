@@ -47,7 +47,7 @@
     "redux": "^3.6.0",
     "redux-logger": "^3.0.1",
     "redux-saga": "^0.15.3",
-    "reduxlet-saga": "^0.2.2",
+    "reduxlet-saga": "^0.3.0",
     "remark": "^7.0.1",
     "remark-react": "^4.0.0",
     "session-file-store": "^1.0.0",

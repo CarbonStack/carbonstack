@@ -30,7 +30,7 @@ class IssuePage extends React.Component {
               <CommentListContainer
                 user={session.user}
                 issue={issue}
-                comments={comments}
+                initialComments={comments}
               />
             </div>
           </div>

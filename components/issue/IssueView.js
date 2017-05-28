@@ -1,7 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import {
-  border
+  border,
+  sansSerifFontFamily
 } from '../../lib/styles/variables'
 import MarkdownPreview from '../shared/MarkdownPreview'
 import moment from 'moment'
@@ -54,6 +55,7 @@ class IssueView extends React.PureComponent {
       <style jsx>{`
         .title {
           font-size: 36px;
+          font-family: ${sansSerifFontFamily};
           margin: 15px auto 25px;
           border-bottom: ${border};
         }

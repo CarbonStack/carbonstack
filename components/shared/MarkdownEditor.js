@@ -52,7 +52,7 @@ class MarkdownEditor extends React.PureComponent {
         div :global(.CodeMirror) {
           height: auto;
           min-height: 100px;
-          font-size: 0.9em;
+          font-size: 16px;
           font-family: ${monospacedFontFamily};
         }
         div :global(.CodeMirror-scroll) {
