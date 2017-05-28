@@ -14,7 +14,7 @@ class MarkdownEditor extends React.PureComponent {
 
   onChange = () => {
     const { onChange } = this.props
-    this.value = this.refs.editor.value
+    this.value = this.editor.value
     if (onChange) onChange()
   }
 
@@ -24,11 +24,11 @@ class MarkdownEditor extends React.PureComponent {
   }
 
   focusEditor () {
-    this.refs.editor.focus()
+    this.editor.focus()
   }
 
   refreshEditor () {
-    this.refs.editor.refresh()
+    this.editor.refresh()
   }
 
   render () {
@@ -36,7 +36,7 @@ class MarkdownEditor extends React.PureComponent {
 
     return <div>
       <CodeEditor
-        ref='editor'
+        ref={editor => (this.editor = editor)}
         value={value}
         placeholder={placeholder}
         onChange={this.onChange}
@@ -52,7 +52,7 @@ class MarkdownEditor extends React.PureComponent {
         div :global(.CodeMirror) {
           height: auto;
           min-height: 100px;
-          font-size: 0.9em;
+          font-size: 16px;
           font-family: ${monospacedFontFamily};
         }
         div :global(.CodeMirror-scroll) {

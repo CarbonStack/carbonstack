@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  monospacedFontFamily,
+  sansSerifFontFamily,
   errorColor
 } from '../../lib/styles/variables'
 import MarkdownEditor from '../shared/MarkdownEditor'
@@ -56,7 +56,7 @@ class NewIssueForm extends React.PureComponent {
           <MarkdownEditor
             ref={content => (this.content = content)}
             value={form.content}
-            placeholder='Describe the form! (content)'
+            placeholder='Describe your issue! (Markdown supported)'
             onChange={this.onChange}
           />
         </div>
@@ -76,39 +76,34 @@ class NewIssueForm extends React.PureComponent {
             {isSubmitting && <Spinner />} Submit
           </button>
         </div>
-      <style jsx>{`
-      .title {
-        display: flex;
-        margin-bottom: 10px;
-      }
-      .title .title-input {
-        font-size: 36px;
-        height: 45px;
-        font-family: ${monospacedFontFamily};
-        flex: 1;
-        min-width: 0;
-        border-radius: 0;
-        border-width: 0 0 1px;
-      }
-      .content {
-        .CodeMirror {
-          height: 450px;
-        }
-      }
-      .control {
-        margin: 0.25em 0;
-        text-align: right;
-        .error {
-          color: ${errorColor};
-        }
-        button {
-          margin-left: 5px;
-          padding: 0 15px;
-          font-family: ${monospacedFontFamily};
-          height: 35px;
-        }
-      }
-            `}</style>
+
+        <style jsx>{`
+          .title {
+            display: flex;
+            margin-bottom: 15px;
+          }
+          .title .title-input {
+            font-size: 36px;
+            height: 45px;
+            font-family: ${sansSerifFontFamily};
+            flex: 1;
+            min-width: 0;
+            border-radius: 0;
+            border-width: 0 0 1px;
+          }
+          .content {
+            .CodeMirror {
+              height: 450px;
+            }
+          }
+          .control {
+            margin: 0.25em 0;
+            text-align: right;
+          }
+          .control .error {
+            color: ${errorColor};
+          }
+        `}</style>
       </div>
     )
   }
