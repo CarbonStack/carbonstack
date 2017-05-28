@@ -1,4 +1,4 @@
-const { Issue, IssueCommit, Rendezvous } = require('../../lib/db/models')
+const { Issue, IssueCommit, Group } = require('../../lib/db/models')
 const { Unauthorized, Unprocessable } = require('../../lib/errors')
 const getSummary = require('../../lib/markdown/getSummary')
 
@@ -12,9 +12,9 @@ async function create (req, res) {
 
   req.body.content = String(req.body.content)
 
-  const rv = await Rendezvous
-    .findById(req.body.rv)
-  if (rv == null) throw new Unprocessable('Invalid rendezvous ID.')
+  const group = await Group
+    .findById(req.body.group)
+  if (group == null) throw new Unprocessable('Invalid rendezvous ID.')
 
   const issueCommit = await IssueCommit
     .create({
@@ -22,20 +22,20 @@ async function create (req, res) {
       writer: req.user._id
     })
 
-  rv.latestIssueNumber += 1
+  group.latestIssueNumber += 1
   const issue = await Issue
     .create({
       latestCommit: issueCommit._id,
       title: req.body.title,
       summary: getSummary(req.body.content),
       writer: req.user._id,
-      number: rv.latestIssueNumber,
-      rv: rv._id
+      number: group.latestIssueNumber,
+      group: group._id
     })
 
-  rv.issueMap[rv.latestIssueNumber] = issue._id
-  rv.markModified('issueMap')
-  await rv.save()
+  group.issueMap[group.latestIssueNumber] = issue._id
+  group.markModified('issueMap')
+  await group.save()
 
   res.json({
     issue,

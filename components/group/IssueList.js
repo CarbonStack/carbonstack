@@ -1,8 +1,7 @@
 import React from 'react'
 import {
   monospacedFontFamily,
-  grayColor,
-  border
+  grayColor
 } from '../../lib/styles/variables'
 import IssueItem from './IssueItem'
 import Link from 'next/link'
@@ -11,7 +10,7 @@ class IssueList extends React.PureComponent {
   render () {
     const { issues, group } = this.props
     const issueItems = issues
-      .map(issue => <IssueItem issue={issue} group={group} />)
+      .map(issue => <IssueItem key={issue._id} issue={issue} group={group} />)
 
     return <ul>
       {issueItems}
