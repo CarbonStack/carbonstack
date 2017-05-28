@@ -1,135 +1,47 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import DefaultLayout from '../components/layouts/DefaultLayout'
+import DefaultLayout from '../components/base/DefaultLayout'
 import withBootstrap from '../lib/hocs/withBootstrap'
-import styled from 'styled-components'
-import Link from 'next/link'
-import media from '../lib/styles/media'
-import {
-  borderColor,
-  grayColor,
-  monospacedFontFamily
-} from '../lib/styles/variables'
-import api from '../lib/api'
-import MarkdownPreview from '../components/shared/MarkdownPreview'
-import moment from 'moment'
-import CommentListContainer from '../components/issue/CommentListContainer'
 
-const Root = styled.div`
-  width: 80%;
-  margin: 0 auto;
-  padding: 0 15px;
-  ${media.small`
-    width: 100%;
-  `}
-  &>div.meta {
-    display: flex;
-    color: ${grayColor};
-    font-family: ${monospacedFontFamily};
-    font-size: 0.9em;
-    margin-bottom: 15px;
-    .left {
-      flex: 1;
-      .writer {
-        line-height: 20px;
-        .photo {
-          width: 20px;
-          height: 20px;
-          border-radius: 10px;
-          vertical-align: middle;
-        }
-      }
-    }
-    .right {
-      button: {
-        margin: 0 5px;
-      }
-    }
-  }
-  &>h1.title {
-    font-size: 3em;
-    border-bottom: 1px solid ${borderColor};
-    margin-bottom: 15px;
-  }
-  &>.comments {
-    margin: 35px auto;
-    padding: 35px 0 0;
-    border-top: 1px solid ${borderColor};
-  }
-`
+import CommentListContainer from '../components/issue/CommentListContainer'
+import IssueViewContainer from '../components/issue/IssueViewContainer'
+
 class IssuePage extends React.Component {
-  static async getInitialProps (ctx) {
-    const { query } = ctx
+  render () {
+    const {
+      route,
+      session
+    } = this.props
     const {
       issue,
       comments
-    } = await api.pages.issue(query.rvUniqueName, query.issueNumber, ctx)
-
-    return {
-      issue,
-      comments,
-      query
-    }
-  }
-
-  constructor () {
-    super()
-
-    this.state = {
-      newComment: {
-        content: ''
-      }
-    }
-  }
-
-  render () {
-    const {
-      issue,
-      comments,
-      query,
-      session
-    } = this.props
+    } = this.props.bundle
 
     return (
-      <DefaultLayout title={`${issue.title} by ${issue.writer.githubName} - Carbon Stack`}>
-        <Root>
-          <h1 className='title'>{issue.title}</h1>
-
-          <div className='meta'>
-            <div className='left'>
-              <div className='writer'>
-                #{issue.number}: in <Link href={`/rv?rvUniqueName=${query.rvUniqueName}`} as={`/rv/${query.rvUniqueName}`}><a>{query.rvUniqueName}</a></Link> by&nbsp;
-                <img
-                  className='photo'
-                  src={issue.writer.photos[0].value}
-                />&nbsp;
-                {issue.writer.githubName} {moment(issue.createdAt).fromNow()}
-              </div>
-            </div>
-            <div className='right'>
-              <Link href={`/issue-edit?rvUniqueName=${query.rvUniqueName}&issueNumber=${issue.number}`} as={`/rv/${query.rvUniqueName}/${issue.number}/edit`}><a>Edit</a></Link>
-              <button>Upvote</button>
+      <DefaultLayout>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8'>
+              <IssueViewContainer
+                route={route}
+                session={session}
+                issue={issue}
+              />
+              <CommentListContainer
+                user={session.user}
+                issue={issue}
+                comments={comments}
+              />
             </div>
           </div>
-
-          <div>
-            <MarkdownPreview value={issue.latestCommit.content} />
-          </div>
-          <div className='comments'>
-            <h3>Comments</h3>
-            <CommentListContainer
-              user={session.user}
-              issue={issue}
-              comments={comments}
-            />
-          </div>
-        </Root>
+        </div>
       </DefaultLayout>
     )
   }
 }
 
 const mapStateToProps = state => ({
+  route: state.route,
   session: state.session
 })
 

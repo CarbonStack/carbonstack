@@ -7,7 +7,6 @@ import {
   borderColor,
   grayColor
 } from '../../lib/styles/variables'
-import media from '../../lib/styles/media'
 import CommentForm from './CommentForm'
 
 const Root = styled.div`
@@ -18,9 +17,6 @@ const Root = styled.div`
       margin: 15px 15px 0;
       border: solid 1px ${borderColor};
       border-radius: 4px;
-      ${media.small`
-        margin: 15px 0 0;
-      `}
       &>.meta {
         height: 30px;
         line-height: 30px;

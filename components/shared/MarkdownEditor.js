@@ -68,21 +68,27 @@ class MarkdownEditor extends React.PureComponent {
         }
         div :global(.cm-header-1) {
           font-size: 32px;
+          line-height: 1.4;
         }
         div :global(.cm-header-2) {
           font-size: 24px;
+          line-height: 1.4;
         }
         div :global(.cm-header-3) {
           font-size: 20px;
+          line-height: 1.4;
         }
         div :global(.cm-header-4) {
           font-size: 16px;
+          line-height: 1.4;
         }
         div :global(.cm-header-5) {
           font-size: 14px;
+          line-height: 1.4;
         }
         div :global(.cm-header-6) {
           font-size: 12px;
+          line-height: 1.4;
         }
       `}</style>
     </div>

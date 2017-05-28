@@ -23,16 +23,17 @@ class TopNavigation extends React.PureComponent {
       route,
       session
     } = this.props
-    const isGroupRoute = route.pathname.match(/^\/group/)
 
     return <nav>
       <div className='container'>
         <div className='left'>
-          <LogoLink />
+          <LogoLink href='/'>
+            Carbon Stack
+          </LogoLink>
         </div>
 
         <div className='right'>
-          {isGroupRoute &&
+          {(route.pathname === '/group' || route.pathname === '/issue') &&
             <NewButton route={route} />
           }
           {this.props.session.user == null ||

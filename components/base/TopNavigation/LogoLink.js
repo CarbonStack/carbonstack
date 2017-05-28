@@ -7,10 +7,10 @@ import {
 const LogoLink = props => (
   <h1 className='LogoLink'>
 
-    <Link href='/'>
+    <Link href={props.href} as={props.as}>
       <a>
         <img src='https://unpkg.com/@carbonstack/favicon@0.0.1/assets/logo.svg' />
-        <span>Carbon Stack</span>
+        {props.children}
       </a>
     </Link>
 
@@ -24,6 +24,7 @@ const LogoLink = props => (
       a {
         color: ${textColor};
         text-decoration: none;
+        border-bottom: none;
       }
       img {
         vertical-align: middle;

@@ -5,6 +5,8 @@ import GithubSVG from 'octicons/build/svg/mark-github.svg'
 import SignOutSVG from 'octicons/build/svg/sign-out.svg'
 import ChevronDownSVG from 'octicons/build/svg/chevron-down.svg'
 import OrganizationSVG from 'octicons/build/svg/organization.svg'
+import HeartSVG from 'octicons/build/svg/heart.svg'
+import PencilSVG from 'octicons/build/svg/pencil.svg'
 
 const style = ({ size, color }) => ({
   fill: 'currentColor',
@@ -35,4 +37,12 @@ export const ChevronDown = props => (
 
 export const Organization = props => (
   <OrganizationSVG style={style(props)} />
+)
+
+export const Heart = props => (
+  <HeartSVG style={style(props)} />
+)
+
+export const Pencil = props => (
+  <PencilSVG style={style(props)} />
 )

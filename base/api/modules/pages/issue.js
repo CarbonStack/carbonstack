@@ -1,15 +1,20 @@
-const { Rendezvous, Issue, IssueComment } = require('../../../lib/db/models')
+const { Group, Issue, IssueComment } = require('../../../lib/db/models')
 const { NotFound } = require('../../../lib/errors')
 
 async function issueRoute (req, res, next) {
-  const rv = await Rendezvous
+  const {
+    groupUniqueName,
+    issueNumber
+  } = req.query
+
+  const group = await Group
     .findOne({
-      uniqueName: req.params.rvUniqueName
+      uniqueName: groupUniqueName
     })
-  if (rv == null) throw new NotFound()
+  if (group == null) throw new NotFound()
 
   const issue = await Issue
-    .findById(rv.issueMap[req.params.issueNumber])
+    .findById(group.issueMap[issueNumber])
     .populate('writer')
     .populate('latestCommit')
 
