@@ -10,6 +10,7 @@ import moment from 'moment'
 
 const IssueItem = ({ issue, group }) => (
   <li
+    className='item'
     key={issue._id}
   >
     <h3>
@@ -25,9 +26,12 @@ const IssueItem = ({ issue, group }) => (
       >
         <a>
           <span className='issueNumber'>#{issue.number}</span>
-          {issue.title}<code className='summary'>{issue.summary}</code></a>
+          {issue.title}</a>
       </Link>
     </h3>
+    <div className='summary'>
+      <p>{issue.summary}</p>
+    </div>
     <div className='meta'>
       <div className='writer'>
         by
@@ -39,43 +43,49 @@ const IssueItem = ({ issue, group }) => (
       </div>
     </div>
     <style jsx>{`
-      li {
-          border-bottom: 1px solid ${borderColor};
-          padding: 0 15px 5px;
-          .meta {
-            color: ${grayColor};
-            font-family: ${monospacedFontFamily};
-            font-size: 0.8em;
-            .writer {
-              line-height: 20px;
-              .photo {
-                width: 20px;
-                height: 20px;
-                border-radius: 10px;
-                vertical-align: middle;
-              }
-            }
-          }
+      .item {
+        border-bottom: 1px solid ${borderColor};
+        padding: 15px 15px;
+      }
+      .item:last-child {
+        border-bottom: none;
+      }
 
-          h3 {
-            font-size: 18px;
-            margin: 0;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-            color: ${grayColor};
-            .issueNumber {
-              font-size: 0.66em;
-              margin-right: 5px;
-            }
-            .summary {
-              vertical-align: middle;
-              margin-left: 15px;
-              color: ${grayColor};
-            }
-            li:last-child {
-              border-bottom: none;
-            }
+      .meta {
+        color: ${grayColor};
+        font-family: ${monospacedFontFamily};
+        font-size: 0.8em;
+      }
+
+      .writer {
+        line-height: 20px;
+      }
+
+      .photo {
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        vertical-align: middle;
+      }
+
+      h3 {
+        font-size: 18px;
+        margin: 0;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        color: ${grayColor};
+      }
+      .issueNumber {
+        font-size: 0.66em;
+        margin-right: 5px;
+      }
+      .summary {
+        vertical-align: middle;
+        margin-left: 15px;
+        color: ${grayColor};
+      }
+
     `}</style>
   </li>
 )

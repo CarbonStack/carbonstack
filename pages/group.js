@@ -20,7 +20,7 @@ class GroupPage extends React.Component {
       <DefaultLayout bundle={bundle}>
         <div className='row'>
           <div className='col-xs-12 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2'>
-            <GroupAside group={group}/>
+            <GroupAside group={group} />
           </div>
           <div className='col-xs-12 col-sm-7 col-md-6'>
             <IssueList
