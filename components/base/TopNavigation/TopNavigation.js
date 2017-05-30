@@ -19,6 +19,29 @@ class TopNavigation extends React.PureComponent {
   }
 
   renderLeft () {
+    const {
+      route
+    } = this.props
+    switch (route.pathname) {
+      case '/issues/show':
+      case '/issues/new':
+      case '/issues/edit':
+        return (
+          <div className='left'>
+            <LogoLink
+              href={{
+                pathname: '/groups/show',
+                query: {
+                  groupUniqueName: route.query.groupUniqueName
+                }
+              }}
+              as={`/g/${route.query.groupUniqueName}`}
+            >
+              /g/{route.query.groupUniqueName}
+            </LogoLink>
+          </div>
+        )
+    }
     return (
       <div className='left'>
         <LogoLink href='/'>

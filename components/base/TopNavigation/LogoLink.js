@@ -1,7 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import {
-  textColor
+  textColor,
+  border
 } from '../../../lib/styles/variables'
 
 const LogoLink = props => (
@@ -25,6 +26,9 @@ const LogoLink = props => (
         color: ${textColor};
         text-decoration: none;
         border-bottom: none;
+      }
+      a:hover {
+        border-bottom: 1px solid ${textColor};
       }
       img {
         vertical-align: middle;
