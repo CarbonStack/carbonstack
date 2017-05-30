@@ -18,6 +18,16 @@ class TopNavigation extends React.PureComponent {
     this.props.actions.requestSignOut()
   }
 
+  renderLeft () {
+    return (
+      <div className='left'>
+        <LogoLink href='/'>
+          Carbon Stack
+        </LogoLink>
+      </div>
+    )
+  }
+
   render () {
     const {
       route,
@@ -26,14 +36,10 @@ class TopNavigation extends React.PureComponent {
 
     return <nav>
       <div className='container'>
-        <div className='left'>
-          <LogoLink href='/'>
-            Carbon Stack
-          </LogoLink>
-        </div>
+        {this.renderLeft()}
 
         <div className='right'>
-          {(route.pathname === '/group' || route.pathname === '/issue') &&
+          {(route.pathname === '/groups/show' || route.pathname === '/issues') &&
             <NewButton route={route} />
           }
           {this.props.session.user == null ||
@@ -63,9 +69,7 @@ class TopNavigation extends React.PureComponent {
         }
         .container {
           display: flex;
-        }
-        .left {
-          flex: 1;
+          justify-content: space-between;
         }
         .right {
           display: flex;

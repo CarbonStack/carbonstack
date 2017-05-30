@@ -105,7 +105,7 @@ const createGroupSaga = function * () {
       const body = yield select(state => state.form)
       const { group } = yield call(api.groups.create, body)
       Router.replace({
-        pathname: '/group',
+        pathname: '/groups/show',
         query: {
           groupUniqueName: group.uniqueName
         }

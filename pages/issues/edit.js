@@ -1,9 +1,9 @@
 import React from 'react'
-import DefaultLayout from '../components/layouts/DefaultLayout'
+import DefaultLayout from '../../components/layouts/DefaultLayout'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import api from '../lib/api'
-import withBootstrap from '../lib/hocs/withBootstrap'
+import api from '../../lib/api'
+import withBootstrap from '../../lib/hocs/withBootstrap'
 import { bindActionCreators } from 'redux'
 import actions, {
   WORKING,

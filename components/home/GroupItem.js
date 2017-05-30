@@ -22,7 +22,7 @@ const GroupItem = ({ group }) => (
 
     <div className='center'>
       <h3>
-        <Link href={`/group?groupUniqueName=${group.uniqueName}`} as={`/g/${group.uniqueName}`}>
+        <Link href={`/groups/show?groupUniqueName=${group.uniqueName}`} as={`/g/${group.uniqueName}`}>
           <a>
             {group.name} <small>/g/{group.uniqueName}</small>
           </a>

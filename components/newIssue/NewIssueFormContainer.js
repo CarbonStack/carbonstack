@@ -84,7 +84,7 @@ const createIssueSaga = function * () {
       }
       const { issue } = yield call(api.issues.create, params)
       Router.replace({
-        pathname: '/issue',
+        pathname: '/issues/show',
         query: {
           groupUniqueName: group.uniqueName,
           issueNumber: issue.number

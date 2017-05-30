@@ -45,17 +45,20 @@ nextApp.prepare()
     expressApp.get('/g', (req, res) => {
       return res.redirect('/')
     })
+    expressApp.get('/groups/new', (req, res) => {
+      nextApp.render(req, res, '/groups/new', Object.assign(req.params, req.query))
+    })
     expressApp.get('/g/:groupUniqueName', (req, res) => {
-      nextApp.render(req, res, '/group', Object.assign(req.params, req.query))
+      nextApp.render(req, res, '/groups/show', Object.assign(req.params, req.query))
     })
     expressApp.get('/g/:groupUniqueName/new', (req, res) => {
-      nextApp.render(req, res, '/new-issue', Object.assign(req.params, req.query))
+      nextApp.render(req, res, '/issues/new', Object.assign(req.params, req.query))
     })
     expressApp.get('/g/:groupUniqueName/:issueNumber', (req, res) => {
-      nextApp.render(req, res, '/issue', Object.assign(req.params, req.query))
+      nextApp.render(req, res, '/issues/show', Object.assign(req.params, req.query))
     })
     expressApp.get('/g/:groupUniqueName/:issueNumber/edit', (req, res) => {
-      nextApp.render(req, res, '/issue-edit', Object.assign(req.params, req.query))
+      nextApp.render(req, res, '/issues/edit', Object.assign(req.params, req.query))
     })
 
     expressApp.get('*', (req, res) => {

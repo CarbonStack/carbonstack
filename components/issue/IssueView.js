@@ -38,7 +38,7 @@ class IssueView extends React.PureComponent {
         </div>
 
         <div className='right'>
-          <Link href={`/issue-edit?groupUniqueName=${query.groupUniqueName}&issueNumber=${issue.number}`} as={`/g/${query.groupUniqueName}/${issue.number}/edit`}>
+          <Link href={`/issues/edit?groupUniqueName=${query.groupUniqueName}&issueNumber=${issue.number}`} as={`/g/${query.groupUniqueName}/${issue.number}/edit`}>
             <a><PencilIcon /> Edit</a>
           </Link>
           <button>

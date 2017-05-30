@@ -50,7 +50,7 @@ class GroupList extends React.PureComponent {
         </div>
 
         <div className='newGroup'>
-          <Link href='/new-group'><a>Or, create a new group</a></Link>
+          <Link href='/groups/new'><a>Or, create a new group</a></Link>
         </div>
 
         <ul className='groupList'>

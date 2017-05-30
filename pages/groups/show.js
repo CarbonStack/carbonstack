@@ -1,12 +1,12 @@
 import React from 'react'
-import DefaultLayout from '../components/base/DefaultLayout'
-import withBootstrap from '../lib/hocs/withBootstrap'
-import GroupAside from '../components/group/GroupAside'
-import IssueList from '../components/group/IssueList'
+import DefaultLayout from '../../components/base/DefaultLayout'
+import withBootstrap from '../../lib/hocs/withBootstrap'
+import GroupAside from '../../components/group/GroupAside'
+import IssueList from '../../components/group/IssueList'
 import {
   monospacedFontFamily,
   grayColor
-} from '../lib/styles/variables'
+} from '../../lib/styles/variables'
 
 class GroupPage extends React.Component {
   render () {

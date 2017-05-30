@@ -5,7 +5,7 @@ const NewButton = ({ route }) => (
   <div>
     <Link
       href={{
-        pathname: '/new-issue',
+        pathname: '/issues/new',
         query: {
           groupUniqueName: route.query.groupUniqueName
         }

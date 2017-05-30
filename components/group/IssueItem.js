@@ -16,7 +16,7 @@ const IssueItem = ({ issue, group }) => (
     <h3>
       <Link
         href={{
-          pathname: '/issue',
+          pathname: '/issues/show',
           query: {
             groupUniqueName: group.uniqueName,
             issueNumber: issue.number

@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import DefaultLayout from '../components/base/DefaultLayout'
-import withBootstrap from '../lib/hocs/withBootstrap'
+import DefaultLayout from '../../components/base/DefaultLayout'
+import withBootstrap from '../../lib/hocs/withBootstrap'
 
-import CommentListContainer from '../components/issue/CommentListContainer'
-import IssueViewContainer from '../components/issue/IssueViewContainer'
+import CommentListContainer from '../../components/issue/CommentListContainer'
+import IssueViewContainer from '../../components/issue/IssueViewContainer'
 
 class IssuePage extends React.Component {
   render () {
