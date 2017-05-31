@@ -1,6 +1,6 @@
-const { Unauthorized } = require('../../../lib/errors')
-const { Group } = require('../../../lib/db/models')
-const { NotFound } = require('../../../lib/errors')
+const { Unauthorized } = require('../../../../lib/errors')
+const { Group } = require('../../../../lib/db/models')
+const { NotFound } = require('../../../../lib/errors')
 
 async function newIssueRoute (req, res, next) {
   if (req.user == null) throw new Unauthorized()

@@ -1,8 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import {
-  textColor,
-  border
+  textColor
 } from '../../../lib/styles/variables'
 
 const LogoLink = props => (

@@ -1,5 +1,5 @@
-const { Group, Issue } = require('../../../lib/db/models')
-const { NotFound } = require('../../../lib/errors')
+const { Group, Issue } = require('../../../../lib/db/models')
+const { NotFound } = require('../../../../lib/errors')
 
 async function groupRoute (req, res, next) {
   const group = await Group

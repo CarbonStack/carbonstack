@@ -1,5 +1,5 @@
-const { Group, Issue, IssueComment } = require('../../../lib/db/models')
-const { NotFound } = require('../../../lib/errors')
+const { Group, Issue, IssueComment } = require('../../../../lib/db/models')
+const { NotFound } = require('../../../../lib/errors')
 
 async function issueRoute (req, res, next) {
   const {
