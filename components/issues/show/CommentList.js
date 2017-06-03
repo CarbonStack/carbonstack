@@ -2,10 +2,10 @@ import React from 'react'
 import {
   monospacedFontFamily,
   grayColor
-} from '../../lib/styles/variables'
+} from '../../../lib/styles/variables'
 import CommentForm from './CommentForm'
 import CommentItem from './CommentItem'
-import socket from '../../lib/socket'
+import socket from '../../../lib/socket'
 
 class CommentList extends React.PureComponent {
   componentDidMount () {

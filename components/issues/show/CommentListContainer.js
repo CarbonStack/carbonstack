@@ -1,4 +1,4 @@
-import api from '../../lib/api'
+import api from '../../../lib/api'
 import reduxlet from 'reduxlet-saga'
 import CommentList from './CommentList'
 import { take, call, put, select } from 'redux-saga/effects'

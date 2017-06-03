@@ -3,13 +3,13 @@ import Link from 'next/link'
 import {
   border,
   sansSerifFontFamily
-} from '../../lib/styles/variables'
-import MarkdownPreview from '../shared/MarkdownPreview'
+} from '../../../lib/styles/variables'
+import MarkdownPreview from '../../shared/MarkdownPreview'
 import moment from 'moment'
 import {
   Heart as HeartIcon,
   Pencil as PencilIcon
-} from '../shared/octicons'
+} from '../../shared/octicons'
 
 class IssueView extends React.PureComponent {
   render () {

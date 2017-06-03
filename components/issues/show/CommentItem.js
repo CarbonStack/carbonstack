@@ -1,11 +1,11 @@
 import React from 'react'
 import moment from 'moment'
-import MarkdownPreview from '../shared/MarkdownPreview'
+import MarkdownPreview from '../../shared/MarkdownPreview'
 import {
   monospacedFontFamily,
   borderColor,
   grayColor
-} from '../../lib/styles/variables'
+} from '../../../lib/styles/variables'
 
 const CommentItem = ({ comment }) => (
   <li

@@ -1,10 +1,10 @@
 import React from 'react'
-import MarkdownEditor from '../shared/MarkdownEditor'
+import MarkdownEditor from '../../shared/MarkdownEditor'
 import {
   borderColor,
   grayColor,
   errorColor
-} from '../../lib/styles/variables'
+} from '../../../lib/styles/variables'
 
 class CommentForm extends React.PureComponent {
   onChange = () => {
