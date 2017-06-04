@@ -89,12 +89,7 @@ async function update (req, res, next) {
   ])
 
   // Broadcast role update to group
-  ws.io.to('group:' + group._id).emit('groupRole:create', {
-    user: user,
-    role: targetRole
-  })
-  ws.io.to('user:' + user._id).emit('groupRole:create', {
-    user: user,
+  ws.io.to('group:' + group._id).emit('groupRole:update', {
     role: targetRole
   })
 

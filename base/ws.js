@@ -20,6 +20,14 @@ const bootstrap = (app) => {
       console.log(`${client.id} left from issue:${issueId}`)
       client.leave('issue:' + issueId)
     })
+    client.on('join:group', ({groupId}) => {
+      console.log(`${client.id} joined to group:${groupId}`)
+      client.join('group:' + groupId)
+    })
+    client.on('leave:group', ({groupId}) => {
+      console.log(`${client.id} left from group:${groupId}`)
+      client.leave('group:' + groupId)
+    })
   })
 
   return server

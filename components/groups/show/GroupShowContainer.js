@@ -14,6 +14,8 @@ const FAILURE_JOIN_GROUP = 'FAILURE_JOIN_GROUP'
 const REQUEST_LEAVE_GROUP = 'REQUEST_LEAVE_GROUP'
 const SUCCESS_LEAVE_GROUP = 'SUCCESS_LEAVE_GROUP'
 const FAILURE_LEAVE_GROUP = 'FAILURE_LEAVE_GROUP'
+const UPDATE_GROUP_ROLE = 'UPDATE_GROUP_ROLE'
+const DESTROY_GROUP_ROLE = 'DESTROY_GROUP_ROLE'
 
 const defaultState = ownProps => ({
   user: ownProps.session.user,
@@ -49,6 +51,14 @@ const actions = {
   failureLeaveGroup: error => ({
     type: FAILURE_JOIN_GROUP,
     payload: error
+  }),
+  updateGroupRole: ({ role }) => ({
+    type: UPDATE_GROUP_ROLE,
+    payload: role
+  }),
+  destroyGroupRole: ({ role }) => ({
+    type: DESTROY_GROUP_ROLE,
+    payload: role
   })
 }
 
@@ -65,7 +75,8 @@ const reducer = (state, action) => {
         ...state,
         group: {
           ...state.group,
-          roles: Object.values(state.group.roles.concat([role])
+          roles: Object
+            .values(state.group.roles.concat([role])
             .reduce((acc, role) => {
               acc[role._id] = role
               return acc
@@ -104,6 +115,32 @@ const reducer = (state, action) => {
         ...state,
         error,
         isJoiningOrLeaving: false
+      }
+    }
+    case UPDATE_GROUP_ROLE: {
+      const role = action.payload
+      console.log(state.group.roles.concat([role]))
+      return {
+        ...state,
+        group: {
+          ...state.group,
+          roles: Object
+            .values(state.group.roles.concat([role])
+            .reduce((acc, role) => {
+              acc[role._id] = role
+              return acc
+            }, {}))
+        }
+      }
+    }
+    case DESTROY_GROUP_ROLE: {
+      const role = action.payload
+      return {
+        ...state,
+        group: {
+          ...state.group,
+          roles: state.group.roles.filter(aRole => aRole._id !== role._id)
+        }
       }
     }
   }

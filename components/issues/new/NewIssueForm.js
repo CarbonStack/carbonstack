@@ -91,10 +91,8 @@ class NewIssueForm extends React.PureComponent {
             border-radius: 0;
             border-width: 0 0 1px;
           }
-          .content {
-            .CodeMirror {
-              height: 450px;
-            }
+          .content .CodeMirror {
+            height: 450px;
           }
           .control {
             margin: 0.25em 0;

@@ -77,11 +77,7 @@ async function destroy (req, res, next) {
     user.save()
   ])
 
-  // Broadcast role update to group
   ws.io.to('group:' + group._id).emit('groupRole:destroy', {
-    role: targetRole
-  })
-  ws.io.to('user:' + user._id).emit('groupRole:destroy', {
     role: targetRole
   })
 
