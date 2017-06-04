@@ -20,7 +20,7 @@ class IssueList extends React.PureComponent {
           <p>
             <Link
               href={{
-                pathname: '/new',
+                pathname: '/issues/new',
                 query: group.uniqueName != null
                   ? {
                     groupUniqueName: group.uniqueName
