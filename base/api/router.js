@@ -27,8 +27,13 @@ router.use('/pages', pagesRouter)
 /**
  * Data Apis
  */
-router.get('/groups', asyncWrap(groups.index))
+router.get('/groups', asyncWrap(groups.list))
 router.post('/groups', asyncWrap(groups.create))
+
+// Join user to gruop
+router.put('/groups/:groupId/roles', asyncWrap(groups.roles.update))
+// Revoke user from group
+router.delete('/groups/:groupId/roles', asyncWrap(groups.roles.destroy))
 
 router.post('/issues', asyncWrap(issues.create))
 

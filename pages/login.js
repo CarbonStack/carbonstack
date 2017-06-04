@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux'
 import {
   actions as sessionActions
 } from '../lib/redux/modules/session'
-import media from '../lib/styles/media'
 import { Github as GithubIcon } from '../components/shared/octicons'
 
 class LoginPage extends React.Component {
@@ -38,11 +37,6 @@ class LoginPage extends React.Component {
             padding: 0 15px;
             text-align: center;
           }
-          ${media.small`
-            div.root {
-              width: 100%;
-            }
-          `}
           .control button {
             font-size: 1.4em;
           }

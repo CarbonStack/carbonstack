@@ -2,7 +2,7 @@ import React from 'react'
 import {
   monospacedFontFamily,
   grayColor
-} from '../../lib/styles/variables'
+} from '../../../lib/styles/variables'
 import IssueItem from './IssueItem'
 import Link from 'next/link'
 

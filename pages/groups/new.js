@@ -1,6 +1,6 @@
 import React from 'react'
 import DefaultLayout from '../../components/base/DefaultLayout'
-import NewGroupFormContainer from '../../components/newGroup/NewGroupFormContainer'
+import NewGroupFormContainer from '../../components/groups/new/NewGroupFormContainer'
 import withBootstrap from '../../lib/hocs/withBootstrap'
 
 class NewGroupPage extends React.PureComponent {

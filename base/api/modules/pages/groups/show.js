@@ -6,6 +6,7 @@ async function groupRoute (req, res, next) {
     .findOne({
       uniqueName: req.query.groupUniqueName
     })
+    .populate('roles')
   if (group == null) throw new NotFound()
 
   // Make Ids array from issueMap

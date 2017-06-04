@@ -36,7 +36,94 @@ const Group = new Schema({
   roles: [{
     type: Schema.Types.ObjectId,
     ref: 'GroupRole'
-  }]
+  }],
+  policies: {
+    type: {
+      joinGroup: {
+        type: String,
+        enum: [
+          'public',
+          'private'
+        ],
+        default: 'public',
+        required: true
+      },
+      inviteGroup: {
+        type: String,
+        enum: [
+          'member',
+          'moderator',
+          'admin'
+        ],
+        default: 'member',
+        required: true
+      },
+      readIssue: {
+        type: String,
+        enum: [
+          'guest',
+          'member',
+          'moderator',
+          'admin'
+        ],
+        default: 'guest',
+        required: true
+      },
+      writeIssue: {
+        type: String,
+        enum: [
+          'guest',
+          'member',
+          'moderator',
+          'admin'
+        ],
+        default: 'member',
+        required: true
+      },
+      deleteIssue: {
+        type: String,
+        enum: [
+          'member',
+          'moderator',
+          'admin'
+        ],
+        default: 'moderator',
+        required: true
+      },
+      writeComment: {
+        type: String,
+        enum: [
+          'guest',
+          'member',
+          'moderator',
+          'admin'
+        ],
+        default: 'guest',
+        required: true
+      },
+      editComment: {
+        type: String,
+        enum: [
+          'guest',
+          'member',
+          'moderator',
+          'admin'
+        ],
+        default: 'moderator',
+        required: true
+      },
+      deleteComment: {
+        type: String,
+        enum: [
+          'member',
+          'moderator',
+          'admin'
+        ],
+        default: 'moderator',
+        required: true
+      }
+    }
+  }
 })
 
 module.exports = Group

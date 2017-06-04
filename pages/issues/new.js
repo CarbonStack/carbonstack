@@ -1,7 +1,7 @@
 import React from 'react'
 import DefaultLayout from '../../components/base/DefaultLayout'
 import withBootstrap from '../../lib/hocs/withBootstrap'
-import NewIssueFormContainer from '../../components/newIssue/NewIssueFormContainer'
+import NewIssueFormContainer from '../../components/issues/new/NewIssueFormContainer'
 
 class NewIssuePage extends React.PureComponent {
   render () {

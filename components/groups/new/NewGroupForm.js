@@ -2,11 +2,11 @@ import React from 'react'
 import {
   placeholderColor,
   errorColor
-} from '../../lib/styles/variables'
+} from '../../../lib/styles/variables'
 import {
   languageMap
-} from '../shared/LanguageEmoji'
-import Spinner from '../shared/Spinner'
+} from '../../shared/LanguageEmoji'
+import Spinner from '../../shared/Spinner'
 
 class NewGroupForm extends React.PureComponent {
   componentDidMount () {

@@ -2,9 +2,9 @@ import React from 'react'
 import {
   sansSerifFontFamily,
   errorColor
-} from '../../lib/styles/variables'
-import MarkdownEditor from '../shared/MarkdownEditor'
-import Spinner from '../shared/Spinner'
+} from '../../../lib/styles/variables'
+import MarkdownEditor from '../../shared/MarkdownEditor'
+import Spinner from '../../shared/Spinner'
 
 class NewIssueForm extends React.PureComponent {
   componentDidMount () {

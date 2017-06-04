@@ -2,22 +2,23 @@ const path = require('path')
 const {
   Group,
   GroupRole
-} = require('../../lib/db/models')
+} = require('../../../lib/db/models')
 const {
   Unauthorized,
   Unprocessable,
   Conflict
-} = require('../../lib/errors')
-const s3 = require('../../lib/s3')
+} = require('../../../lib/errors')
+const s3 = require('../../../lib/s3')
 
-async function index (req, res, next) {
-  const groups = await Group.find({})
-
-  res.json({
-    groups
-  })
-}
-
+/**
+ * Create a group
+ * 1. create a group
+ * 2. create a role(Admin)
+ * 3. bind role to group
+ * 4. bind role to user
+ * 5. store temporary group profile image
+ * 6. bind image uri to group
+ */
 async function create (req, res, next) {
   if (req.user == null) throw new Unauthorized()
 
@@ -100,7 +101,4 @@ async function create (req, res, next) {
   })
 }
 
-module.exports = {
-  index,
-  create
-}
+module.exports = create

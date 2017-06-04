@@ -1,7 +1,7 @@
 import NewGroupForm from './NewGroupForm'
 import reduxlet from 'reduxlet-saga'
 import { take, put, call, select, fork } from 'redux-saga/effects'
-import api from '../../lib/api'
+import api from '../../../lib/api'
 import Router from 'next/router'
 
 const UPDATE_FORM = 'UPDATE_FORM'

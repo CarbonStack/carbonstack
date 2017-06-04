@@ -5,7 +5,7 @@ import {
   monospacedFontFamily,
   borderColor,
   grayColor
-} from '../../lib/styles/variables'
+} from '../../../lib/styles/variables'
 import moment from 'moment'
 
 const IssueItem = ({ issue, group }) => (

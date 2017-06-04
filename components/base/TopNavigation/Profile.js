@@ -39,12 +39,12 @@ class Profile extends React.PureComponent {
     return (
       <div className='root'>
 
-        <img width='30' height='30' src={photoURL} />
         <button
           className='toggleButton'
           ref={toggleButton => (this.toggleButton = toggleButton)}
           onClick={this.onToggleButtonClick}
         >
+          <img width='30' height='30' src={photoURL} />
           <ChevronDown />
         </button>
 

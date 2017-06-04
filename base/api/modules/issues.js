@@ -1,6 +1,7 @@
 const { Issue, IssueCommit, Group } = require('../../lib/db/models')
 const { Unauthorized, Unprocessable } = require('../../lib/errors')
 const getSummary = require('../../lib/markdown/getSummary')
+const ws = require('../../ws')
 
 async function create (req, res) {
   if (req.user == null) throw new Unauthorized()
@@ -36,6 +37,10 @@ async function create (req, res) {
   group.issueMap[group.latestIssueNumber] = issue._id
   group.markModified('issueMap')
   await group.save()
+
+  ws.io.to('group:' + group._id).emit('issue:create', {
+    issue: issue
+  })
 
   res.json({
     issue,
