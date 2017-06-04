@@ -45,9 +45,9 @@ const CommentItem = ({ comment }) => (
       }
       .content {
         margin: 0 15px;
-        ul {
-          list-style: initial;
-        }
+      }
+      .content ul {
+        list-style: initial;
       }
       &>li.empty {
           color: ${grayColor};

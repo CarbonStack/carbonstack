@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import remark from 'remark'
 import reactRenderer from 'remark-react'
 import {
@@ -7,18 +6,8 @@ import {
   monospacedFontFamily
 } from '../../lib/styles/variables'
 
-const Empty = styled.div`
-  color: ${placeholderColor};
-  font-family: ${monospacedFontFamily};
-`
-
 const IDLE = 'MarkdownPreview/IDLE'
 const WORKING = 'MarkdownPreview/WORKING'
-
-const Root = styled.div`
-  overflow-x: hidden;
-  overflow-y: scroll;
-`
 
 class MarkdownPreview extends React.PureComponent {
   constructor (props) {
@@ -60,13 +49,22 @@ class MarkdownPreview extends React.PureComponent {
   }
 
   render () {
-    const { className = '' } = this.props
-    return <Root className={'markdown-body ' + className}>
+    return <div className='markdown-body'>
       {(this.state.rendered == null || this.state.rendered.props.children == null) &&
-        <Empty>Empty Content</Empty>
+        <div className='empty'>Empty Content</div>
       }
       {this.state.rendered}
-    </Root>
+      <style jsx>{`
+        .markdown-body {
+          overflow-x: hidden;
+          overflow-y: auto;
+        }
+        .empty {
+          color: ${placeholderColor};
+          font-family: ${monospacedFontFamily};
+        }
+      `}</style>
+    </div>
   }
 }
 

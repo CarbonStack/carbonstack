@@ -40,7 +40,7 @@ class NewIssueForm extends React.PureComponent {
     } = this.props
 
     return (
-      <div>
+      <div className='root'>
         <div className='title'>
           <input
             className='title-input'
@@ -78,6 +78,9 @@ class NewIssueForm extends React.PureComponent {
         </div>
 
         <style jsx>{`
+          .root {
+            margin-top: 25px;
+          }
           .title {
             display: flex;
             margin-bottom: 15px;
