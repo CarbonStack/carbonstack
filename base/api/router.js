@@ -36,6 +36,7 @@ router.put('/groups/:groupId/roles', asyncWrap(groups.roles.update))
 router.delete('/groups/:groupId/roles', asyncWrap(groups.roles.destroy))
 
 router.post('/issues', asyncWrap(issues.create))
+router.put('/issues/:issueId', asyncWrap(issues.update))
 
 router.post('/comments', asyncWrap(comments.create))
 

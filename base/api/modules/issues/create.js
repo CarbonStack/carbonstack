@@ -1,7 +1,7 @@
-const { Issue, IssueCommit, Group } = require('../../lib/db/models')
-const { Unauthorized, Unprocessable } = require('../../lib/errors')
-const getSummary = require('../../lib/markdown/getSummary')
-const ws = require('../../ws')
+const { Issue, IssueCommit, Group } = require('../../../lib/db/models')
+const { Unauthorized, Unprocessable } = require('../../../lib/errors')
+const getSummary = require('../../../lib/markdown/getSummary')
+const ws = require('../../../ws')
 
 async function create (req, res) {
   if (req.user == null) throw new Unauthorized()
@@ -48,6 +48,4 @@ async function create (req, res) {
   })
 }
 
-module.exports = {
-  create
-}
+module.exports = create

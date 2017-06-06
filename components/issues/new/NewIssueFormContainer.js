@@ -30,6 +30,7 @@ const actions = {
 }
 
 const defaultState = {
+  // Now we can resolve group by giving defaultState as a function
   group: null,
   form: {
     title: '',

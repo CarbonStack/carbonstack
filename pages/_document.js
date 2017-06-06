@@ -31,11 +31,13 @@ export default class MyDocument extends Document {
           <link rel='manifest' href='https://unpkg.com/@carbonstack/favicon@0.0.1/assets/manifest.json' />
           <link rel='mask-icon' href='https://unpkg.com/@carbonstack/favicon@0.0.1/assets/safari-pinned-tab.svg' color='#5bbad5' />
           <link rel='stylesheet' href='https://unpkg.com/codemirror@5.25.2/lib/codemirror.css' />
+          <link rel='stylesheet' href='https://unpkg.com/codemirror@5.25.2/addon/merge/merge.css' />
           <link rel='stylesheet' type='text/css' href='https://unpkg.com/nprogress@0.2.0/nprogress.css' />
         </Head>
         <body>
           <Main />
 
+          <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/diff_match_patch/20121119/diff_match_patch.js' />
           <script type='text/javascript' src='https://unpkg.com/codemirror@5.25.2/lib/codemirror.js' />
           <script type='text/javascript' src='https://unpkg.com/codemirror@5.25.2/mode/meta.js' />
           <script type='text/javascript' src='https://unpkg.com/codemirror@5.25.2/addon/mode/overlay.js' />
@@ -44,6 +46,7 @@ export default class MyDocument extends Document {
           <script type='text/javascript' src='https://unpkg.com/codemirror@5.25.2/addon/runmode/runmode.js' />
           <script type='text/javascript' src='https://unpkg.com/codemirror@5.25.2/addon/edit/continuelist.js' />
           <script type='text/javascript' src='https://unpkg.com/codemirror@5.25.2/addon/display/placeholder.js' />
+          <script type='text/javascript' src='https://unpkg.com/codemirror@5.25.2/addon/merge/merge.js' />
           <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.4/socket.io.slim.min.js' />
 
           <NextScript />

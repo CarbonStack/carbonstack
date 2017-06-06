@@ -34,12 +34,12 @@ const IssueItem = ({ issue, group }) => (
     </div>
     <div className='meta'>
       <div className='writer'>
-        by
+        Updated {moment(issue.updatedAt).fromNow()} by
         <img
           className='photo'
           src={issue.writer.photos[0].value}
         />&nbsp;
-        {issue.writer.githubName} {moment(issue.createdAt).fromNow()}
+        {issue.writer.githubName}
       </div>
     </div>
     <style jsx>{`

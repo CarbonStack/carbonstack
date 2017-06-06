@@ -28,12 +28,12 @@ class IssueView extends React.PureComponent {
 
         <div className='left'>
           <div className='writer'>
-            by&nbsp;
+            Updated {moment(issue.updatedAt).fromNow()}&nbsp;by&nbsp;
             <img
               className='photo'
               src={issue.writer.photos[0].value}
             />&nbsp;
-            {issue.writer.githubName} {moment(issue.createdAt).fromNow()}
+            {issue.writer.githubName}
           </div>
         </div>
 
