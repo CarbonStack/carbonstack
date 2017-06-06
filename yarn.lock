@@ -2,10 +2,6 @@
 # yarn lockfile v1
 
 
-"@carbonstack/base-css@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@carbonstack/base-css/-/base-css-0.0.3.tgz#15f7a6aa73ae2d0ad6e7d616e46bea5efb52e9a5"
-
 JSONStream@^1.0.4:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/JSONStream/-/JSONStream-1.3.1.tgz#707f761e01dae9e16f1bcf93703b78c70966579a"
