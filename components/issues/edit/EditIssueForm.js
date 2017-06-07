@@ -122,7 +122,6 @@ class EditIssueForm extends React.PureComponent {
           .title .title-input {
             font-size: 36px;
             height: 45px;
-            font-family: ${sansSerifFontFamily};
             flex: 1;
             min-width: 0;
             border-radius: 0;

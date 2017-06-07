@@ -34,7 +34,7 @@ const IssueItem = ({ issue, group }) => (
     </div>
     <div className='meta'>
       <div className='writer'>
-        Updated {moment(issue.updatedAt).fromNow()} by
+        Updated {moment(issue.updatedAt).fromNow()} by&nbsp;
         <img
           className='photo'
           src={issue.writer.photos[0].value}
